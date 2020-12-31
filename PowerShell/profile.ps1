@@ -1,10 +1,9 @@
 #Region UX config
 $hasOhMyPosh = Import-Module oh-my-posh -MinimumVersion 3.0 -PassThru -ErrorAction SilentlyContinue
 if ($hasOhMyPosh) {
-    $themePath = "$Home/documents/powershell/posh-theme.json"
+    $themePath = Join-Path $PSScriptRoot 'posh-theme.json'
     if (Test-Path $themePath) {
         Set-PoshPrompt -Theme $themePath
-        #Set-PoshPrompt -Theme powerlevel10k_classic
     } else {
         Set-PoshPrompt -Theme powerlevel10k_classic
     }
