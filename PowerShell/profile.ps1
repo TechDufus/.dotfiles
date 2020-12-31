@@ -1,4 +1,4 @@
-#Region UX config
+#Region UX Config
 $hasOhMyPosh = Import-Module oh-my-posh -MinimumVersion 3.0 -PassThru -ErrorAction SilentlyContinue
 if ($hasOhMyPosh) {
     $themePath = Join-Path $PSScriptRoot 'posh-theme.json'
@@ -23,7 +23,7 @@ if (Get-Module PSReadLine) {
     Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
     Set-PSReadlineOption -BellStyle None
 }
-#EndRegion
+#EndRegion UX Config
 
 Function Get-GitLog() {
     git log --oneline --graph --decorate
