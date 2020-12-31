@@ -12,7 +12,10 @@ If (-Not($IsPSDependInstalled)) {
 Invoke-PSDepend -Force (Join-Path $PSScriptRoot 'requirements.psd1')
 
 If (Test-Path $Profile.CurrentUserAllHosts) {
-    ". $([System.IO.Path]::Combine($Home, 'PowerShell', 'profile.ps1'))" | Out-File -FilePath $Profile.CurrentUserAllHosts -Append -Force
+    $IsAlreadyReferenced = $profile.CurrentUserAllHosts | Select-String -SimpleMatch '. "$([System.IO.Path]::Combine($Home, ''.config'', ''PowerShell'', ''))"''profile.ps1''))"'
+    If (-Not($IsAlreadyReferenced)) {
+        ". $([System.IO.Path]::Combine($Home, 'PowerShell', 'profile.ps1'))" | Out-File -FilePath $Profile.CurrentUserAllHosts -Append -Force
+    }
 } else {
     New-Item -Path $Profile.CurrentUserAllHosts -ItemType File -Force
     ". $([System.IO.Path]::Combine($Home, 'PowerShell', 'profile.ps1'))" | Out-File -FilePath $Profile.CurrentUserAllHosts -Force
