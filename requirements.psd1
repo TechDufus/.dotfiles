@@ -15,4 +15,5 @@
     'ImportExcel'   = 'latest'
     'PowerShellGet' = 'latest'
     'PSake'         = 'latest'
+    'EditorServicesCommandSuite' = 'latest'
 }
