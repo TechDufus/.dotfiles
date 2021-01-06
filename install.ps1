@@ -2,8 +2,10 @@ $configPath = $PSScriptRoot
 
 # Set up symlinks
 Get-ChildItem -Path $configPath -Directory | ForEach-Object {
+    #! Must be admin
     New-Item -Path ([System.IO.Path]::Combine($HOME, '.config', $_.Name)) -ItemType SymbolicLink -Value $_.FullName
 }
+
 
 $IsPSDependInstalled = Get-Module PSDepend -ListAvailable
 If (-Not($IsPSDependInstalled)) {
@@ -11,6 +13,7 @@ If (-Not($IsPSDependInstalled)) {
     Install-Module PSDepend -Force
 }
 Invoke-PSDepend -Force (Join-Path $PSScriptRoot 'requirements.psd1')
+. $PSScriptRoot\Install-MyGitRepos.ps1
 
 If (Test-Path $Profile.CurrentUserAllHosts) {
     $IsAlreadyReferenced = $profile.CurrentUserAllHosts | Select-String -SimpleMatch '. "$([System.IO.Path]::Combine($Home, ''.config'', ''PowerShell'', ''))"''profile.ps1''))"'
