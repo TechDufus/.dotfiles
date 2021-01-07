@@ -1,5 +1,6 @@
 # Matthew DeGarmo's PowerShell Profile
 This is where store my PowerShell profile.
+Ideally you would need to be an admin to run this..
 
 Simply Clone this directory and run the `install.ps1`.
 
