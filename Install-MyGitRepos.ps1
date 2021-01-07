@@ -1,7 +1,13 @@
 $Repos = @(
     'matthewjdegarmo/Stream',
     'matthewjdegarmo/MyTop8',
-    'matthewjdegarmo/AdventOfCode2020'
+    'matthewjdegarmo/AdventOfCode2020',
+    'matthewjdegarmo/HelpDesk',
+    'matthewjdegarmo/AdminToolkit',
+    'matthewjdegarmo/matthewjdegarmo',
+    'matthewjdegarmo/matthewjdegarmo.github.io',
+    'matthewjdegarmo/PSTeams',
+    'powerline/fonts'
 )
 
 If (-Not(Test-Path 'C:\Projects\GitHub')) {
