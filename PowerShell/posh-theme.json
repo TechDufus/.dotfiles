@@ -68,7 +68,7 @@
                     "properties": {
                         "threshold": 500,
                         "style": "austin",
-                        "prefix": " <#fefefe>⏱ </> "
+                        "prefix": "<#fefefe>⏱ </>"
                     }
                 },
                 {
