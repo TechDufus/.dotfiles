@@ -2,7 +2,6 @@
 $Repos = @(
     'matthewjdegarmo/Stream',
     'matthewjdegarmo/MyTop8',
-    'matthewjdegarmo/AdventOfCode2020',
     'matthewjdegarmo/HelpDesk',
     'matthewjdegarmo/AdminToolkit',
     'matthewjdegarmo/matthewjdegarmo',
