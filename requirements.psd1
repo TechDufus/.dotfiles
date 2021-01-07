@@ -7,13 +7,14 @@
         }
     }
 
-    'oh-my-posh'    = 'latest'
-    'AdminToolkit'  = 'latest'
-    'HelpDesk'      = 'latest'
-    'PSReadLine'    = 'latest'
-    'posh-git'      = 'latest'
-    'ImportExcel'   = 'latest'
-    'PowerShellGet' = 'latest'
-    'PSake'         = 'latest'
-    'EditorServicesCommandSuite' = 'latest'
+    'oh-my-posh'        = 'latest'
+    'AdminToolkit'      = 'latest'
+    'HelpDesk'          = 'latest'
+    'PSReadLine'        = 'latest'
+    'posh-git'          = 'latest'
+    'ImportExcel'       = 'latest'
+    'PowerShellGet'     = 'latest'
+    'PackageManagement' = 'latest'
+    'PSake'             = 'latest'
+    'EditorServicesCommandSuite'  = 'latest'
 }
