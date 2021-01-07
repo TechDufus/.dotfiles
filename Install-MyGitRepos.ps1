@@ -27,7 +27,7 @@ $Repos | Foreach-Object -ThrottleLimit $Repos.Count -Parallel {
 
 #Region Install all fonts
 If (Test-Administrator) {
-    Set-Location Join-Path $GitHubPath fonts
+    Set-Location (Join-Path $GitHubPath 'fonts')
     .\install.ps1
 } else {
     Write-Warning "You must run as admin to install fonts at system level."
