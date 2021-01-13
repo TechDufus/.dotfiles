@@ -108,9 +108,8 @@ Function Install-MyFonts() {
 }
 #EndRegion Install-Fonts
 
-
+#Credit to https://github.com/JoshDesmond for the following snippet.
 $repo = 'ryanoasis/nerd-fonts'
-
 $release = "https://github.com/$repo/releases/latest"
 $destinationFile = [System.IO.Path]::Combine("$env:SystemDrive\", 'Temp', 'Hack.zip')
 $tag = (Invoke-WebRequest -Uri $release -UseBasicParsing)
