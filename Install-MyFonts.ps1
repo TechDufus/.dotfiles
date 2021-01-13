@@ -85,7 +85,7 @@ Function Install-MyFonts() {
             DEFAULT {}
         }
         Try {
-            $destination = [System.IO.Path]::Combine($env:SystemDrive,'Windows','Fonts')
+            $destination = [System.IO.Path]::Combine("$env:SystemDrive\",'Windows','Fonts')
             $UnzippedFiles | Foreach-Object {
                 $file = $_
                 if (($file.Extension -eq '.otf') -or ($file.Extension -eq '.ttf')<# -or ($file.Extension -eq '.woff')#>) {
