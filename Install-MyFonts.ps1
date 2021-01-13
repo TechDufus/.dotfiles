@@ -71,8 +71,12 @@ Function Install-MyFonts() {
                 } else {
                     $SnapshotFiles = Get-ChildItem -Path $FontFolder -Recurse
                     $null=Expand-Archive -Path $FontZipFile -DestinationPath $fontFolder -Force:$Force
-                    $PostExpandFiles = Get-ChildItem -Path $FontFolder -Recurse
-                    $UnzippedFiles = Compare-Object $SnapshotFiles $PostExpandFiles -PassThru | Where-Object {$_.SideIndicator -eq '=>'} | Select-Object -ExcludeProperty SideIndicator
+                    If ($null -eq $SnapshotFiles) {
+                        $UnzippedFiles = Get-ChildItem $FontFile -Recurse
+                    } else {
+                        $PostExpandFiles = Get-ChildItem -Path $FontFolder -Recurse
+                        $UnzippedFiles = Compare-Object $SnapshotFiles $PostExpandFiles -PassThru | Where-Object {$_.SideIndicator -eq '=>'} | Select-Object -ExcludeProperty SideIndicator
+                    }
                 }
             }
             'FromFile_ParamSet' {
