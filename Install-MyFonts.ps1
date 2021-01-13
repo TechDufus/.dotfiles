@@ -69,7 +69,10 @@ Function Install-MyFonts() {
                 if (-Not(Test-Path $FontZipFile)) {
                     Write-Warning "$FontZipFile - Not Found"
                 } else {
-                    $UnzippedFiles = Expand-Archive -Path $FontZipFile -DestinationPath $fontFolder -PassThru -Force:$Force
+                    $SnapshotFiles = Get-ChildItem -Path $FontFolder -Recurse
+                    $null=Expand-Archive -Path $FontZipFile -DestinationPath $fontFolder -Force:$Force
+                    $PostExpandFiles = Get-ChildItem -Path $FontFolder -Recurse
+                    $UnzippedFiles = Compare-Object $SnapshotFiles $PostExpandFiles -PassThru | Where-Object {$_.SideIndicator -eq '=>'} | Select-Object -ExcludeProperty SideIndicator
                 }
             }
             'FromFile_ParamSet' {
