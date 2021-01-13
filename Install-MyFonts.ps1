@@ -36,7 +36,7 @@
     Author: Matthew DeGarmo
     Handle: @matthewjdegarmo
 #>
-Function Install-Fonts() {
+Function Install-MyFonts() {
     [CmdletBinding(
         DefaultParameterSetName='FromZip_ParamSet'
     )]
@@ -110,6 +110,6 @@ $tag = (Invoke-WebRequest -Uri $release -UseBasicParsing)
 $download = ($tag.Links -match "/$repo/releases/download/.*/Hack.zip").href
 $download = "https://github.com$download"
 Invoke-WebRequest "$download" -OutFile $destinationFile
-Install-Fonts -FontZipFile $destinationFile -Force
+Install-MyFonts -FontZipFile $destinationFile -Force
 Remove-Item $DestinationFile -Force
 
