@@ -105,7 +105,7 @@ Function Install-MyFonts() {
 $repo = 'ryanoasis/nerd-fonts'
 
 $release = "https://github.com/$repo/releases/latest"
-$destinationFile = [System.IO.Path]::Combine($env:SystemDrive, 'Temp', 'Hack.zip')
+$destinationFile = [System.IO.Path]::Combine("$env:SystemDrive\", 'Temp', 'Hack.zip')
 $tag = (Invoke-WebRequest -Uri $release -UseBasicParsing)
 $download = ($tag.Links -match "/$repo/releases/download/.*/Hack.zip").href
 $download = "https://github.com$download"
