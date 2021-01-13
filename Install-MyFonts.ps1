@@ -72,7 +72,7 @@ Function Install-MyFonts() {
                     $SnapshotFiles = Get-ChildItem -Path $FontFolder -Recurse
                     $null=Expand-Archive -Path $FontZipFile -DestinationPath $fontFolder -Force:$Force
                     If ($null -eq $SnapshotFiles) {
-                        $UnzippedFiles = Get-ChildItem $FontFile -Recurse
+                        $UnzippedFiles = Get-ChildItem $FontFolder -Recurse
                     } else {
                         $PostExpandFiles = Get-ChildItem -Path $FontFolder -Recurse
                         $UnzippedFiles = Compare-Object $SnapshotFiles $PostExpandFiles -PassThru | Where-Object {$_.SideIndicator -eq '=>'} | Select-Object -ExcludeProperty SideIndicator
