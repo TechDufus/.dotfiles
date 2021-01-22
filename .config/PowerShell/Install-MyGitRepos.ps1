@@ -23,11 +23,3 @@ $Repos | Foreach-Object -ThrottleLimit $Repos.Count -Parallel {
     git clone https://github.com/$_`.git
 }
 #EndRegion Clone Git Repos
-
-#Region Install all fonts
-If (Test-Administrator) {
-    . (Join-Path $PSScriptRoot 'Install-MyFonts.ps1')
-} else {
-    Write-Warning "You must run as admin to install fonts at system level."
-}
-#EndRegion Install all fonts

@@ -17,4 +17,5 @@
     'PackageManagement' = 'latest'
     'PSake'             = 'latest'
     'EditorServicesCommandSuite'  = 'latest'
+    'Microsoft.PowerShell.ConsoleGuiTools' = 'latest'
 }
