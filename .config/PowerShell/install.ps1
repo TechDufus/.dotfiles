@@ -1,3 +1,12 @@
+
+$IsPSDependInstalled = Get-Module PSDepend -ListAvailable
+If (-Not($IsPSDependInstalled)) {
+    Write-Host 'Installing PSDepend Module.'
+    Install-Module PSDepend -Force
+}
+Invoke-PSDepend -Force (Join-Path $PSScriptRoot 'requirements.psd1')
+
+
 . (Join-Path $PSScriptRoot 'Install-MyGitRepos.ps1')
 #Region Install all fonts
 If (Test-Administrator) {
