@@ -30,6 +30,27 @@ Function Get-GitLog() {
 }
 Set-Alias -Name GGL -Value Get-GitLog
 
+Function New-GitAddCommitPush() {
+    [CmdletBinding()]
+    Param(
+        [Parameter(Position=0)]
+        $CommitMessage = "Updating..."
+    )
+
+    $writeColor = @{
+        ForegroundColor = 'Green'
+        BackgroundColor = 'Black'
+    }
+
+    Write-Host "Adding all changed files..." @writeColor
+    git add .
+    Write-Host "Commiting files: $CommitMessage" @writeColor
+    git commit -m $CommitMessage
+    Write-Host "Pushing changes to remote.." @writeColor
+    git push
+}
+Set-Alias -Name GACP -Value New-GitAddCommitPush
+
 function Git-Whoami {
     $author = git config user.name
     $email = git config user.email
