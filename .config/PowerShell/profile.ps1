@@ -61,6 +61,78 @@ function Git-Whoami {
     }
 }
 
+Function Update-GitRepos() {
+    [CmdletBinding()]
+    Param(
+        # Specifies a path to one or more locations.
+        [Parameter( Position=0,
+                    ParameterSetName="Path",
+                    ValueFromPipeline=$true,
+                    ValueFromPipelineByPropertyName=$true,
+                    HelpMessage="Path to one or more locations.")]
+        [Alias("PSPath")]
+        [ValidateNotNullOrEmpty()]
+        [System.String] $Path = (Get-Location).Path
+    )
+
+    Begin {
+        #Region Variables
+        $OriginalLocation = (Get-Location).Path
+        #EndRegion Variables
+
+        #Region Test-GitRepo
+        
+        Function Test-GitRepo() {
+            [CmdletBinding()]
+            Param(
+                # Specifies a path to one or more locations.
+                [Parameter(Position=0,
+                           ParameterSetName="Path",
+                           ValueFromPipeline=$true,
+                           ValueFromPipelineByPropertyName=$true,
+                           HelpMessage="Path to one or more locations.")]
+                [Alias("PSPath")]
+                [ValidateNotNullOrEmpty()]
+                [System.String] $Path = (Get-Location).Path
+            )
+
+            Process {
+                $Path | Foreach-Object {
+                    $OriginalLocation = (Get-Location).Path
+                    Set-Location $Path
+                    Try {
+                        If (Test-Path '.git') {
+                            git status 1> $null
+                        } Else {
+                            git status 2> $null
+                        }
+                        [PSCustomObject] @{
+                            Path = $_
+                            GitRepo = $?
+                        }
+                    } Finally {
+                        Set-Location $OriginalLocation
+                    }
+                }
+            }
+        }
+        #EndRegion Test-GitRepo
+    }
+
+    Process {
+        Get-ChildItem $Path -Directory | Foreach-Object {
+            Try {
+                If ((Test-GitRepo $_.FullPath).GitRepo) {
+                    Set-Location $_.FullPath
+                    git pull
+                }
+            } Finally {
+                Set-Location $OriginalLocation
+            }
+        }
+    }
+}
+
 If (-Not($IsLinux)) {
     #Used to check if running elevated on windows
     $wid = [System.Security.Principal.WindowsIdentity]::GetCurrent()
