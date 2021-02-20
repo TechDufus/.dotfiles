@@ -78,6 +78,14 @@ Function Update-GitRepos() {
     Begin {
         #Region Variables
         $OriginalLocation = (Get-Location).Path
+        $ErrorColors = @{
+            ForegroundColor = 'Red'
+            BackGroundColor = 'Black'
+        }
+        $SuccessColors = @{
+            ForegroundColor = 'Green'
+            BackGroundColor = 'Black'
+        }
         #EndRegion Variables
 
         #Region Test-GitRepo
@@ -122,9 +130,12 @@ Function Update-GitRepos() {
     Process {
         Get-ChildItem $Path -Directory | Foreach-Object {
             Try {
-                If ((Test-GitRepo $_.FullPath).GitRepo) {
-                    Set-Location $_.FullPath
+                If ((Test-GitRepo $_.FullName).GitRepo) {
+                    Write-Host "Updating Repo: $($_.FullName)" @SuccessColors
+                    Set-Location $_.FullName
                     git pull
+                } Else {
+                    Write-Host "Directory $($_.FullName) is not a git repo." @ErrorColors
                 }
             } Finally {
                 Set-Location $OriginalLocation
