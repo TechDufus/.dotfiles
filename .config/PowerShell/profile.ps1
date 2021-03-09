@@ -72,7 +72,7 @@ Function Update-GitRepos() {
                     HelpMessage="Path to one or more locations.")]
         [Alias("PSPath")]
         [ValidateNotNullOrEmpty()]
-        [System.String] $Path = (Get-Location).Path
+        [System.String[]] $Path = (Get-Location).Path
     )
 
     Begin {
@@ -128,17 +128,19 @@ Function Update-GitRepos() {
     }
 
     Process {
-        Get-ChildItem $Path -Directory | Foreach-Object {
-            Try {
-                If ((Test-GitRepo $_.FullName).GitRepo) {
-                    Write-Host "Updating Repo: $($_.FullName)" @SuccessColors
-                    Set-Location $_.FullName
-                    git pull
-                } Else {
-                    Write-Host "Directory $($_.FullName) is not a git repo." @ErrorColors
+        $Path | Foreach-Object {
+            Get-ChildItem $_ -Directory | Foreach-Object {
+                Try {
+                    If ((Test-GitRepo $_.FullName).GitRepo) {
+                        Write-Host "Updating Repo: $($_.FullName)" @SuccessColors
+                        Set-Location $_.FullName
+                        git pull
+                    } Else {
+                        Write-Host "Directory $($_.FullName) is not a git repo." @ErrorColors
+                    }
+                } Finally {
+                    Set-Location $OriginalLocation
                 }
-            } Finally {
-                Set-Location $OriginalLocation
             }
         }
     }
