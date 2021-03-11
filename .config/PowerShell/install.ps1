@@ -17,7 +17,7 @@ If (Test-Administrator) {
 #EndRegion Install all fonts
 
 
-$PowerShellProfile = "C:\Users\$env:USERNAME\Documents\PowerShell\profile.ps1"
+$PowerShellProfile = "$Home\Documents\PowerShell\profile.ps1"
 
 If (Test-Path $PowerShellProfile) {
     $ConfigProfilePath = [System.IO.Path]::Combine("$Home", '.config', 'PowerShell', 'profile.ps1')
