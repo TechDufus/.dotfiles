@@ -1,4 +1,6 @@
-[CMdletBinding()]
+#!/bin/env/pwsh
+
+[CmdletBinding()]
 Param(
     [Switch] $SkipPowerShellGitRepos
 )
