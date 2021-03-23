@@ -12,4 +12,4 @@ sudo apt install -f -y
 
 sudo rm /opt/$powershellfilename
 
-sudo $scriptroot/install.ps1
+sudo pwsh -command $scriptroot/install.ps1
