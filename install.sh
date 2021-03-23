@@ -1,6 +1,6 @@
 #!/bin/bash
 
-scriptroot=`dirname "$BASH_SOURCE"`
+scriptroot=$(dirname "$0")
 
 . /etc/os-release
 powershellfilename=powershell_7.1.3-1.$ID.$VERSION_ID\_amd64.deb
