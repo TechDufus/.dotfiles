@@ -10,6 +10,6 @@ sudo wget -c https://github.com/PowerShell/PowerShell/releases/download/v7.1.3/$
 sudo dpkg -i /opt/$powershellfilename
 sudo apt install -f -y
 
-rm /opt/$powershellfilename
+sudo rm /opt/$powershellfilename
 
-$scriptroot/install.ps1
+sudo $scriptroot/install.ps1
