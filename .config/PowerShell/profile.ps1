@@ -128,19 +128,29 @@ Function Update-GitRepos() {
     }
 
     Process {
-        $Path | Foreach-Object {
-            Get-ChildItem $_ -Directory | Foreach-Object {
-                Try {
-                    If ((Test-GitRepo $_.FullName).GitRepo) {
-                        Write-Host "Updating Repo: $($_.FullName)" @SuccessColors
-                        Set-Location $_.FullName
-                        git pull
-                    } Else {
-                        Write-Host "Directory $($_.FullName) is not a git repo." @ErrorColors
-                    }
-                } Finally {
-                    Set-Location $OriginalLocation
+        #TODO: Use this command to recursively search for git repos without running git pull 5000 times
+        #! git rev-parse --show-toplevel
+
+        $AllNestedGitRepos = $Path | Foreach-Object {
+            Get-ChildItem $_ -Directory -Recurse | Foreach-Object {
+                If (Test-Path (Join-Path $_.FullName '.git')) {
+                    Set-Location $_.FullName
+                    git rev-parse --show-toplevel
                 }
+            }
+        }
+
+        $AllNestedGitRepos | Foreach-Object {
+            Try {
+                If ((Test-GitRepo $_).GitRepo) {
+                    Write-Host "Updating Repo: $($_)" @SuccessColors
+                    Set-Location $_
+                    git pull
+                } Else {
+                    Write-Host "Directory $($_) is not a git repo." @ErrorColors
+                }
+            } Finally {
+                Set-Location $OriginalLocation
             }
         }
     }
