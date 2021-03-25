@@ -11,5 +11,3 @@ sudo dpkg -i /opt/$powershellfilename
 sudo apt install -f -y
 
 sudo rm /opt/$powershellfilename
-
-sudo pwsh -command $scriptroot/install.ps1

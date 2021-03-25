@@ -1,6 +1,6 @@
 [CmdletBinding()]
 Param(
-    [Switch] $SkipPowerShellGitRepos
+    [Switch] $IncludePowerShellGitRepos
 )
 
 $configPath = (Join-Path $PSScriptRoot '.config')
