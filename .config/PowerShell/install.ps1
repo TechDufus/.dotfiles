@@ -16,14 +16,12 @@ If (-Not($SkipPowerShellGitRepos.IsPresent)) {
     . (Join-Path $PSScriptRoot 'Install-MyGitRepos.ps1')
 }
 #Region Install all fonts
-If ($IsWindows) {
+If ($IsLinux -eq $false -or $null -eq $IsLinux) {
     If (Test-Administrator) {
         . (Join-Path $PSScriptRoot 'Install-MyFonts.ps1')
     } else {
         Write-Warning "You must run as admin to install fonts at system level."
     }
-} Else {
-    Write-Warning "To install fonts, you must be on a Windows System."
 }
 #EndRegion Install all fonts
 
