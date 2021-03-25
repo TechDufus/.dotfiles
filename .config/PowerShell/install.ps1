@@ -2,7 +2,7 @@
 
 [CmdletBinding()]
 Param(
-    [Switch] $SkipPowerShellGitRepos
+    [Switch] $IncludePowerShellGitRepos
 )
 
 $IsPSDependInstalled = Get-Module PSDepend -ListAvailable
@@ -12,7 +12,7 @@ If (-Not($IsPSDependInstalled)) {
 }
 Invoke-PSDepend -Force (Join-Path $PSScriptRoot 'requirements.psd1')
 
-If (-Not($SkipPowerShellGitRepos.IsPresent)) {
+If ($IncludePowerShellGitRepos.IsPresent) {
     . (Join-Path $PSScriptRoot 'Install-MyGitRepos.ps1')
 }
 #Region Install all fonts
