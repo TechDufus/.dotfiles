@@ -1,12 +1,13 @@
 #Region UX Config
 $hasOhMyPosh = Import-Module oh-my-posh -MinimumVersion 3.0 -PassThru -ErrorAction SilentlyContinue
 if ($hasOhMyPosh) {
-    $themePath = Join-Path $PSScriptRoot 'posh-theme.json'
-    if (Test-Path $themePath) {
-        Set-PoshPrompt -Theme $themePath
-    } else {
-        Set-PoshPrompt -Theme powerlevel10k_classic
-    }
+    Set-PoshPrompt avit
+    # $themePath = Join-Path $PSScriptRoot 'posh-theme.json'
+    # if (Test-Path $themePath) {
+    #     Set-PoshPrompt -Theme $themePath
+    # } else {
+    #     Set-PoshPrompt -Theme powerlevel10k_classic
+    # }
 }
 
 if (Get-Module PSReadLine) {

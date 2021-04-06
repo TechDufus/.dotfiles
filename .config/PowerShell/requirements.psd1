@@ -17,6 +17,7 @@
     'PowerShellGet'     = 'latest'
     'PackageManagement' = 'latest'
     'PSake'             = 'latest'
+    'PSWriteColor'      = 'latest'
     'EditorServicesCommandSuite'  = 'latest'
     'Microsoft.PowerShell.ConsoleGuiTools' = 'latest'
 }
