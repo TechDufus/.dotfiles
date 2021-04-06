@@ -25,6 +25,8 @@ if (Get-Module PSReadLine) {
 }
 #EndRegion UX Config
 
+Import-Module Terminal-Icons
+
 Function Get-GitLog() {
     git log --oneline --graph --decorate
 }

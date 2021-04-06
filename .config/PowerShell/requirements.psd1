@@ -7,6 +7,7 @@
         }
     }
 
+    'Terminal-Icons'    = 'latest'
     'oh-my-posh'        = 'latest'
     'AdminToolkit'      = 'latest'
     'HelpDesk'          = 'latest'
