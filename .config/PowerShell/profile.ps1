@@ -16,22 +16,22 @@ If ($PSVersionTable.PSVersion.Major -gt 5) {
         #     Set-PoshPrompt -Theme powerlevel10k_classic
         # }
     }
-    Import-Module posh-git
+}
+Import-Module posh-git
 
-    if (Get-Module PSReadLine) {
-        Set-PSReadLineKeyHandler -Chord Alt+Enter -Function AddLine
-        Set-PSReadLineOption -ContinuationPrompt "  " -PredictionSource History -Colors @{
-            Operator         = "`e[95m"
-            Parameter        = "`e[95m"
-            InlinePrediction = "`e[36;7;238m"
-        }
-        
-        Set-PSReadLineOption -PredictionSource History
-        Set-PSReadLineOption -HistorySearchCursorMovesToEnd
-        Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
-        Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
-        Set-PSReadlineOption -BellStyle None
+if (Get-Module PSReadLine) {
+    Set-PSReadLineKeyHandler -Chord Alt+Enter -Function AddLine
+    Set-PSReadLineOption -ContinuationPrompt "  " -PredictionSource History -Colors @{
+        Operator         = [System.ConsoleColor]::DarkRed
+        Parameter        = [System.ConsoleColor]::Red
+        InlinePrediction = [System.ConsoleColor]::Cyan
     }
+    
+    Set-PSReadLineOption -PredictionSource History
+    Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+    Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+    Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+    Set-PSReadlineOption -BellStyle None
 }
 #EndRegion UX Config
 
@@ -462,3 +462,51 @@ Function Get-ErrorTypes() {
         } Catch {}
     } | Select-Object FullName
 }
+
+Function Get-ConsoleColors {
+
+    <#
+    .SYNOPSIS
+        Displays all color options on the screen at one time
+
+    .DESCRIPTION
+        Displays all color options on the screen at one time
+
+    .EXAMPLE
+        Get-ConsoleColors
+
+    .NOTES
+        Name       : Get-ConsoleColors.ps1
+        Author     : Mike Kanakos
+        Version    : 1.0.3
+        DateCreated: 2019-07-23
+        DateUpdated: 2019-07-23
+
+        LASTEDIT:
+        - Add loops for foreground and background colors
+        - output foreground and background colors for easy selection
+        
+    .LINK
+        https://github.com/compwiz32/PowerShell
+
+
+#>
+
+[CmdletBinding()]
+    Param()
+    
+    $List = [enum]::GetValues([System.ConsoleColor]) 
+    
+    ForEach ($Color in $List){
+        Write-Host "      $Color" -ForegroundColor $Color -NonewLine
+        Write-Host "" 
+        
+    } #end foreground color ForEach loop
+
+    ForEach ($Color in $List){
+        Write-Host "                   " -backgroundColor $Color -noNewLine
+        Write-Host "   $Color"
+                
+    } #end background color ForEach loop
+    
+} #end function
