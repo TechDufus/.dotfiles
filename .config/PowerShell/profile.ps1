@@ -1,29 +1,37 @@
 #Region UX Config
-$hasOhMyPosh = Import-Module oh-my-posh -MinimumVersion 3.0 -PassThru -ErrorAction SilentlyContinue
-if ($hasOhMyPosh) {
-    Set-PoshPrompt avit
-    # $themePath = Join-Path $PSScriptRoot 'posh-theme.json'
-    # if (Test-Path $themePath) {
-    #     Set-PoshPrompt -Theme $themePath
-    # } else {
-    #     Set-PoshPrompt -Theme powerlevel10k_classic
-    # }
+$DetectedOS = switch($true) {
+    $IsWindows {'Windows'}
+    $IsLinux   {'Linux'}
+    $IsMacOS   {'MacOS'}
+    DEFAULT    {'Windows'}
 }
-Import-Module posh-git
-
-if (Get-Module PSReadLine) {
-    Set-PSReadLineKeyHandler -Chord Alt+Enter -Function AddLine
-    Set-PSReadLineOption -ContinuationPrompt "  " -PredictionSource History -Colors @{
-        Operator         = "`e[95m"
-        Parameter        = "`e[95m"
-        InlinePrediction = "`e[36;7;238m"
+If ($PSVersionTable.PSVersion.Major -gt 5) {
+    $hasOhMyPosh = Import-Module oh-my-posh -MinimumVersion 3.0 -PassThru -ErrorAction SilentlyContinue
+    if ($hasOhMyPosh) {
+        Set-PoshPrompt avit
+        # $themePath = Join-Path $PSScriptRoot 'posh-theme.json'
+        # if (Test-Path $themePath) {
+        #     Set-PoshPrompt -Theme $themePath
+        # } else {
+        #     Set-PoshPrompt -Theme powerlevel10k_classic
+        # }
     }
-    
-    Set-PSReadLineOption -PredictionSource History
-    Set-PSReadLineOption -HistorySearchCursorMovesToEnd
-    Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
-    Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
-    Set-PSReadlineOption -BellStyle None
+    Import-Module posh-git
+
+    if (Get-Module PSReadLine) {
+        Set-PSReadLineKeyHandler -Chord Alt+Enter -Function AddLine
+        Set-PSReadLineOption -ContinuationPrompt "  " -PredictionSource History -Colors @{
+            Operator         = "`e[95m"
+            Parameter        = "`e[95m"
+            InlinePrediction = "`e[36;7;238m"
+        }
+        
+        Set-PSReadLineOption -PredictionSource History
+        Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+        Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+        Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+        Set-PSReadlineOption -BellStyle None
+    }
 }
 #EndRegion UX Config
 

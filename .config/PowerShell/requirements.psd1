@@ -3,7 +3,6 @@
         Target     = 'CurrentUser'
         Parameters = @{
             Repository      = 'PSGallery'
-            AllowPrerelease = $True
         }
     }
 
