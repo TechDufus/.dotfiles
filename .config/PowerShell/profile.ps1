@@ -240,6 +240,26 @@ Function Update-GitRepos() {
     }
 }
 
+Function Remove-NoteProperty() {
+    [CmdletBInding()]
+    Param(
+        [Parameter(Mandatory)]
+        [System.Object] $InputObject,
+
+        [Parameter(Mandatory)]
+        [System.String] $NoteProperty
+    )
+
+    $Fields = ($InputObject | Get-Member -MemberType NoteProperty | Where-Object {$_.Name -ne $NoteProperty}).Name
+
+    $NewObject = @{}
+    Foreach ($Field in $Fields) {
+        $NewObject[$Field] = $InputObject.$Field
+    }
+
+    $NewObject
+}
+
 If (-Not($IsLinux)) {
     #Used to check if running elevated on windows
     $wid = [System.Security.Principal.WindowsIdentity]::GetCurrent()
