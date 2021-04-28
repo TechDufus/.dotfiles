@@ -30,8 +30,9 @@ if (Get-Module PSReadLine) {
     Set-PSReadLineOption -PredictionSource History
     Set-PSReadLineOption -PredictionViewStyle ListView
     Set-PSReadLineOption -HistorySearchCursorMovesToEnd
-    Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
-    Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+    # Commenting out the following because using ListView needs to use UpArrow and DownArrow for results.
+    # Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+    # Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
     Set-PSReadlineOption -BellStyle None
 }
 #EndRegion UX Config
