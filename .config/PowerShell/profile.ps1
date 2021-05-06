@@ -44,6 +44,17 @@ Function Get-GitLog() {
 }
 Set-Alias -Name GGL -Value Get-GitLog
 
+Set-Alias -Name t -Value terraform
+
+Function UpOneDir() {Set-Location ..}
+Function UpTwoDir() {Set-Location ../..}
+Function UpThreeDir() {Set-Location ../../..}
+Function UpFourDir() {Set-Location ../../../..}
+Set-Alias -Name /. -Value UpOneDir
+Set-Alias -Name /.. -Value UpTwoDir
+Set-Alias -Name /... -Value UpThreeDir
+Set-Alias -Name /.... -Value UpFourDir
+
 <#
 .SYNOPSIS
     Perform a benchtest of your PowerShell profile.
