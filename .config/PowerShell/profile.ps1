@@ -443,9 +443,8 @@ function Get-AsciiReaction {
         )
 
         # Clips it without the newline
-        Add-Type -Assembly PresentationCore
         $clipText = ($Ascii).ToString() | Out-String -Stream
-        [Windows.Clipboard]::SetText($clipText)
+        $clipText | Set-Clipboard
 
         Write-Output $clipText
     }
