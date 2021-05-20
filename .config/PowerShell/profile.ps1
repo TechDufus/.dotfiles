@@ -44,12 +44,121 @@ Function Get-GitLog() {
 }
 Set-Alias -Name GGL -Value Get-GitLog
 
+Function Get-GitStatusProfileAlias() {
+    git status
+}
+Set-Alias -Name GS -Value Get-GitStatusProfileAlias
+
 Set-Alias -Name t -Value terraform
 
-Function UpOneDir() {Set-Location ..}
-Function UpTwoDir() {Set-Location ../..}
-Function UpThreeDir() {Set-Location ../../..}
-Function UpFourDir() {Set-Location ../../../..}
+Function UpOneDir() {
+    Param(
+        [ArgumentCompleter({
+            param ($CommandName, $ParameterName, $StringMatch)
+            if ($null -eq $StringMatch) {
+                $Filter = "*"
+            }
+            else {
+                $Filter = "*$StringMatch*"
+            }
+            $Folders = Get-ChildItem -Path .. -Filter $Filter | Select-Object -ExpandProperty Name
+            $Folders = $Folders | Foreach-Object {
+                If ($_.Contains(' ')) {
+                    return "'$_'"
+                    continue
+                }
+                $_
+            }
+            
+            $Folders
+        })]
+        [Parameter(Position=0)]
+        [System.String] $Dir
+    )
+
+    Set-Location ../$Dir
+}
+Function UpTwoDir() {
+    Param(
+        [ArgumentCompleter({
+            param ($CommandName, $ParameterName, $StringMatch)
+            if ($null -eq $StringMatch) {
+                $Filter = "*"
+            }
+            else {
+                $Filter = "*$StringMatch*"
+            }
+            $Folders = Get-ChildItem -Path ../.. -Filter $Filter | Select-Object -ExpandProperty Name
+            $Folders = $Folders | Foreach-Object {
+                If ($_.Contains(' ')) {
+                    return "'$_'"
+                    continue
+                }
+                $_
+            }
+            
+            $Folders
+        })]
+        [Parameter(Position=0)]
+        [System.String] $Dir
+    )
+
+    Set-Location ../../$Dir
+}
+Function UpThreeDir() {
+    Param(
+        [ArgumentCompleter({
+            param ($CommandName, $ParameterName, $StringMatch)
+            if ($null -eq $StringMatch) {
+                $Filter = "*"
+            }
+            else {
+                $Filter = "*$StringMatch*"
+            }
+            $Folders = Get-ChildItem -Path ../../.. -Filter $Filter | Select-Object -ExpandProperty Name
+            $Folders = $Folders | Foreach-Object {
+                If ($_.Contains(' ')) {
+                    return "'$_'"
+                    continue
+                }
+                $_
+            }
+            
+            $Folders
+        })]
+        [Parameter(Position=0)]
+        [System.String] $Dir
+    )
+
+    Set-Location ../../../$Dir
+}
+Function UpFourDir() {
+    Param(
+        [ArgumentCompleter({
+            param ($CommandName, $ParameterName, $StringMatch)
+            if ($null -eq $StringMatch) {
+                $Filter = "*"
+            }
+            else {
+                $Filter = "*$StringMatch*"
+            }
+            $Folders = Get-ChildItem -Path ../../../.. -Filter $Filter | Select-Object -ExpandProperty Name
+            $Folders = $Folders | Foreach-Object {
+                If ($_.Contains(' ')) {
+                    return "'$_'"
+                    continue
+                }
+                $_
+            }
+            
+            $Folders
+        })]
+        [Parameter(Position=0)]
+        [System.String] $Dir
+    )
+
+    Set-Location ../../../../$Dir
+}
 Set-Alias -Name /. -Value UpOneDir
 Set-Alias -Name /.. -Value UpTwoDir
 Set-Alias -Name /... -Value UpThreeDir
