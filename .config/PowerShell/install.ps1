@@ -29,7 +29,7 @@ If ($IsLinux -eq $false -or $null -eq $IsLinux) {
 $PowerShellProfile = $Profile.CurrentUserAllHosts
 
 If (Test-Path $PowerShellProfile) {
-    $ConfigProfilePath = [System.IO.Path]::Combine("$Home", '.config', 'PowerShell', 'profile.ps1')
+    $ConfigProfilePath = Join-Path $PSScriptRoot 'profile.ps1'
     $Pattern = ". `"$ConfigProfilePath`""
     $IsAlreadyReferenced = Get-Content $PowerShellProfile | Select-String -SimpleMatch $Pattern
     If (-Not($IsAlreadyReferenced)) {
@@ -39,7 +39,7 @@ If (Test-Path $PowerShellProfile) {
 } else {
     Write-Host "Creating profile: CurrentUserAllHosts: '$($PowerShellProfile)'"
     New-Item -Path $PowerShellProfile -ItemType File -Force
-    $ConfigProfilePath = [System.IO.Path]::Combine($Home, '.config', 'PowerShell', 'profile.ps1')
+    $ConfigProfilePath = Join-Path $PSScriptRoot 'profile.ps1'
     $Pattern = ". `"$ConfigProfilePath`""
     $Pattern | Out-File -FilePath $PowerShellProfile -Force -Encoding ascii
 }
