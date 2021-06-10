@@ -4,6 +4,7 @@ Param(
 )
 
 $configPath = (Join-Path $PSScriptRoot '.config')
+$script:RootPath = Split-Path $PSScriptRoot -Parent
 
 # Set up symlinks
 Get-ChildItem -Path $configPath -Directory | ForEach-Object {
