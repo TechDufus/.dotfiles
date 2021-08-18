@@ -1,9 +1,9 @@
 #Region UX Config
-$DetectedOS = switch($true) {
-    $IsWindows {'Windows'}
-    $IsLinux   {'Linux'}
-    $IsMacOS   {'MacOS'}
-    DEFAULT    {'Windows'}
+$DetectedOS = switch ($true) {
+    $IsWindows { 'Windows' }
+    $IsLinux { 'Linux' }
+    $IsMacOS { 'MacOS' }
+    DEFAULT { 'Windows' }
 }
 If ($PSVersionTable.PSVersion.Major -gt 5) {
     $hasOhMyPosh = Import-Module oh-my-posh -MinimumVersion 3.0 -PassThru -ErrorAction SilentlyContinue
@@ -53,26 +53,26 @@ Set-Alias -Name t -Value terraform
 
 Function UpOneDir() {
     Param(
-        [ArgumentCompleter({
-            param ($CommandName, $ParameterName, $StringMatch)
-            if ($null -eq $StringMatch) {
-                $Filter = "*"
-            }
-            else {
-                $Filter = "*$StringMatch*"
-            }
-            $Folders = Get-ChildItem -Path .. -Filter $Filter | Select-Object -ExpandProperty Name
-            $Folders = $Folders | Foreach-Object {
-                If ($_.Contains(' ')) {
-                    return "'$_'"
-                    continue
+        [ArgumentCompleter( {
+                param ($CommandName, $ParameterName, $StringMatch)
+                if ($null -eq $StringMatch) {
+                    $Filter = "*"
                 }
-                $_
-            }
+                else {
+                    $Filter = "*$StringMatch*"
+                }
+                $Folders = Get-ChildItem -Path .. -Filter $Filter | Select-Object -ExpandProperty Name
+                $Folders = $Folders | Foreach-Object {
+                    If ($_.Contains(' ')) {
+                        return "'$_'"
+                        continue
+                    }
+                    $_
+                }
             
-            $Folders
-        })]
-        [Parameter(Position=0)]
+                $Folders
+            })]
+        [Parameter(Position = 0)]
         [System.String] $Dir
     )
 
@@ -80,26 +80,26 @@ Function UpOneDir() {
 }
 Function UpTwoDir() {
     Param(
-        [ArgumentCompleter({
-            param ($CommandName, $ParameterName, $StringMatch)
-            if ($null -eq $StringMatch) {
-                $Filter = "*"
-            }
-            else {
-                $Filter = "*$StringMatch*"
-            }
-            $Folders = Get-ChildItem -Path ../.. -Filter $Filter | Select-Object -ExpandProperty Name
-            $Folders = $Folders | Foreach-Object {
-                If ($_.Contains(' ')) {
-                    return "'$_'"
-                    continue
+        [ArgumentCompleter( {
+                param ($CommandName, $ParameterName, $StringMatch)
+                if ($null -eq $StringMatch) {
+                    $Filter = "*"
                 }
-                $_
-            }
+                else {
+                    $Filter = "*$StringMatch*"
+                }
+                $Folders = Get-ChildItem -Path ../.. -Filter $Filter | Select-Object -ExpandProperty Name
+                $Folders = $Folders | Foreach-Object {
+                    If ($_.Contains(' ')) {
+                        return "'$_'"
+                        continue
+                    }
+                    $_
+                }
             
-            $Folders
-        })]
-        [Parameter(Position=0)]
+                $Folders
+            })]
+        [Parameter(Position = 0)]
         [System.String] $Dir
     )
 
@@ -107,26 +107,26 @@ Function UpTwoDir() {
 }
 Function UpThreeDir() {
     Param(
-        [ArgumentCompleter({
-            param ($CommandName, $ParameterName, $StringMatch)
-            if ($null -eq $StringMatch) {
-                $Filter = "*"
-            }
-            else {
-                $Filter = "*$StringMatch*"
-            }
-            $Folders = Get-ChildItem -Path ../../.. -Filter $Filter | Select-Object -ExpandProperty Name
-            $Folders = $Folders | Foreach-Object {
-                If ($_.Contains(' ')) {
-                    return "'$_'"
-                    continue
+        [ArgumentCompleter( {
+                param ($CommandName, $ParameterName, $StringMatch)
+                if ($null -eq $StringMatch) {
+                    $Filter = "*"
                 }
-                $_
-            }
+                else {
+                    $Filter = "*$StringMatch*"
+                }
+                $Folders = Get-ChildItem -Path ../../.. -Filter $Filter | Select-Object -ExpandProperty Name
+                $Folders = $Folders | Foreach-Object {
+                    If ($_.Contains(' ')) {
+                        return "'$_'"
+                        continue
+                    }
+                    $_
+                }
             
-            $Folders
-        })]
-        [Parameter(Position=0)]
+                $Folders
+            })]
+        [Parameter(Position = 0)]
         [System.String] $Dir
     )
 
@@ -134,34 +134,28 @@ Function UpThreeDir() {
 }
 Function UpFourDir() {
     Param(
-        [ArgumentCompleter({
-            param ($CommandName, $ParameterName, $StringMatch)
-            if ($null -eq $StringMatch) {
-                $Filter = "*"
-            }
-            else {
-                $Filter = "*$StringMatch*"
-            }
-            $Folders = Get-ChildItem -Path ../../../.. -Filter $Filter | Select-Object -ExpandProperty Name
-            $Folders = $Folders | Foreach-Object {
-                If ($_.Contains(' ')) {
-                    return "'$_'"
-                    continue
+        [ArgumentCompleter( {
+                param ($CommandName, $ParameterName, $StringMatch)
+                if ($null -eq $StringMatch) {
+                    $Filter = "*"
                 }
-                $_
-            }
-            
-            $Folders
-        })]
-        [Parameter(Position=0)]
+                else {
+                    $Filter = "*$StringMatch*"
+                }
+                $RootDirectory = (Join-Path '..' '..' '..' '..')
+                Push-Location (Join-Path $RootDirectory $StringMatch)
+                $RootPath = (Get-Location).Path
+                Return ((Get-ChildItem -Filter $Filter).FullName -Replace [regex]::escape($RootPath), '')
+            })]
+        [Parameter(Position = 0)]
         [System.String] $Dir
     )
 
     Set-Location ../../../../$Dir
 }
-Set-Alias -Name /. -Value UpOneDir
-Set-Alias -Name /.. -Value UpTwoDir
-Set-Alias -Name /... -Value UpThreeDir
+Set-Alias -Name /.    -Value UpOneDir
+Set-Alias -Name /..   -Value UpTwoDir
+Set-Alias -Name /...  -Value UpThreeDir
 Set-Alias -Name /.... -Value UpFourDir
 
 <#
@@ -198,7 +192,8 @@ Function Test-PowerShellProfilePerformance() {
     Begin {
         If ($Preview.IsPresent) {
             $Pwsh = 'pwsh-preview'
-        } Else {
+        }
+        Else {
             $Pwsh = 'pwsh'
         }
         If (-Not(Get-Command $Pwsh -ErrorAction SilentlyContinue)) {
@@ -214,8 +209,8 @@ Function Test-PowerShellProfilePerformance() {
             $Percent = $($_ / $Count) * 100
             Write-Progress -Id 1 -Activity "$($Pwsh.ToUpper()) - No Profile" -PercentComplete $Percent
             $NoProfile += (Measure-Command {
-                &$Pwsh -noprofile -command 1
-            }).TotalMilliseconds 
+                    &$Pwsh -noprofile -command 1
+                }).TotalMilliseconds 
         }
         Write-Progress -id 1 -Activity "$($Pwsh.ToUpper()) - No Profile" -Completed
         $Result['NoProfile_Average'] = "$($NoProfile/$Count)`ms"
@@ -225,8 +220,8 @@ Function Test-PowerShellProfilePerformance() {
             $Percent = $($_ / $Count) * 100
             Write-Progress -Id 1 -Activity "$($Pwsh.ToUpper()) - With Profile" -PercentComplete $Percent
             $WithProfile += (Measure-Command {
-                &$Pwsh -command 1
-            }).TotalMilliseconds
+                    &$Pwsh -command 1
+                }).TotalMilliseconds
         }
         Write-Progress -id 1 -activity "$($Pwsh.ToUpper()) - With Profile" -Completed
         $Result['Profile_Average'] = "$($WithProfile/$Count)`ms"
@@ -238,7 +233,7 @@ Function Test-PowerShellProfilePerformance() {
 Function New-GitAddCommitPush() {
     [CmdletBinding()]
     Param(
-        [Parameter(Position=0)]
+        [Parameter(Position = 0)]
         $CommitMessage = "Updating..."
     )
 
@@ -270,11 +265,11 @@ Function Update-GitRepos() {
     [CmdletBinding()]
     Param(
         # Specifies a path to one or more locations.
-        [Parameter( Position=0,
-                    ParameterSetName="Path",
-                    ValueFromPipeline=$true,
-                    ValueFromPipelineByPropertyName=$true,
-                    HelpMessage="Path to one or more locations.")]
+        [Parameter( Position = 0,
+            ParameterSetName = "Path",
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true,
+            HelpMessage = "Path to one or more locations.")]
         [Alias("PSPath")]
         [ValidateNotNullOrEmpty()]
         [System.String[]] $Path = (Get-Location).Path
@@ -299,11 +294,11 @@ Function Update-GitRepos() {
             [CmdletBinding()]
             Param(
                 # Specifies a path to one or more locations.
-                [Parameter(Position=0,
-                           ParameterSetName="Path",
-                           ValueFromPipeline=$true,
-                           ValueFromPipelineByPropertyName=$true,
-                           HelpMessage="Path to one or more locations.")]
+                [Parameter(Position = 0,
+                    ParameterSetName = "Path",
+                    ValueFromPipeline = $true,
+                    ValueFromPipelineByPropertyName = $true,
+                    HelpMessage = "Path to one or more locations.")]
                 [Alias("PSPath")]
                 [ValidateNotNullOrEmpty()]
                 [System.String] $Path = (Get-Location).Path
@@ -316,14 +311,16 @@ Function Update-GitRepos() {
                     Try {
                         If (Test-Path '.git') {
                             git status 1> $null
-                        } Else {
+                        }
+                        Else {
                             git status 2> $null
                         }
                         [PSCustomObject] @{
-                            Path = $_
+                            Path    = $_
                             GitRepo = $?
                         }
-                    } Finally {
+                    }
+                    Finally {
                         Set-Location $OriginalLocation
                     }
                 }
@@ -351,10 +348,12 @@ Function Update-GitRepos() {
                     Write-Host "Updating Repo: $($_)" @SuccessColors
                     Set-Location $_
                     git pull
-                } Else {
+                }
+                Else {
                     Write-Host "Directory $($_) is not a git repo." @ErrorColors
                 }
-            } Finally {
+            }
+            Finally {
                 Set-Location $OriginalLocation
             }
         }
@@ -371,7 +370,7 @@ Function Remove-NoteProperty() {
         [System.String] $NoteProperty
     )
 
-    $Fields = ($InputObject | Get-Member -MemberType NoteProperty | Where-Object {$_.Name -ne $NoteProperty}).Name
+    $Fields = ($InputObject | Get-Member -MemberType NoteProperty | Where-Object { $_.Name -ne $NoteProperty }).Name
 
     $NewObject = @{}
     Foreach ($Field in $Fields) {
@@ -497,7 +496,8 @@ Function Publish() {
             Publish-Module -Path $(Split-Path ($ModuleInfo.Path) -Parent) -Repository $Repository
             Write-Output "[+] Successfully published!"
             Write-Output ""
-        } Catch {
+        }
+        Catch {
             Write-Error "$($_.Exception.Message) - Line Number: $($_.InvocationInfo.ScriptLineNumber)"
         }
     }
@@ -600,7 +600,8 @@ Function Get-ErrorTypes() {
     [appdomain]::CurrentDomain.GetAssemblies() | ForEach-Object {
         Try {
             $_.GetExportedTypes() | Where-Object { $_.Fullname -match 'Exception' }
-        } Catch {}
+        }
+        Catch {}
     } | Select-Object FullName
 }
 
@@ -633,18 +634,18 @@ Function Get-ConsoleColors {
 
 #>
 
-[CmdletBinding()]
+    [CmdletBinding()]
     Param()
     
     $List = [enum]::GetValues([System.ConsoleColor]) 
     
-    ForEach ($Color in $List){
+    ForEach ($Color in $List) {
         Write-Host "      $Color" -ForegroundColor $Color -NonewLine
         Write-Host "" 
         
     } #end foreground color ForEach loop
 
-    ForEach ($Color in $List){
+    ForEach ($Color in $List) {
         Write-Host "                   " -backgroundColor $Color -noNewLine
         Write-Host "   $Color"
                 
