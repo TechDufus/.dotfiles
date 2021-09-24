@@ -230,6 +230,22 @@ Function Test-PowerShellProfilePerformance() {
     }
 }
 
+function _ { 
+    begin { 
+        $pipe = { Set-Variable -Name LASTRESULT -Scope 1 }.GetSteppablePipeline()
+        $pipe.Begin($true) 
+    }
+
+    process {
+        $pipe.Process($_)
+        Write-Output -InputObject $_
+    }
+
+    end {
+        $pipe.End()
+    }
+}
+
 Function New-GitAddCommitPush() {
     [CmdletBinding()]
     Param(
