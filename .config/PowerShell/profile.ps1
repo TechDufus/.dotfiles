@@ -19,6 +19,37 @@ If ($PSVersionTable.PSVersion.Major -gt 5) {
 }
 Import-Module posh-git
 
+#Region rcode
+
+<#
+.SYNOPSIS
+
+.DESCRIPTION
+
+.NOTES
+    Author: matthewjdegarmo
+    GitHub: https://github.com/matthewjdegarmo
+#>
+Function rcode() {
+    [CmdletBinding()]
+    Param(
+        [System.String] $Path = '.'
+    )
+
+    Begin {}
+
+    Process {
+        Try {
+            code $Path -r
+        } Catch {
+            Throw $_
+        }
+    }
+
+    End {}
+}
+#EndRegion rcode
+
 if (Get-Module PSReadLine) {
     Set-PSReadLineKeyHandler -Chord Alt+Enter -Function AddLine
     Set-PSReadLineOption -ContinuationPrompt "  " -PredictionSource History -Colors @{
