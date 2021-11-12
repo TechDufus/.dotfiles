@@ -102,7 +102,7 @@ Function Install-MyFonts() {
                 }
             }
         } catch {
-            Write-Warning "$pcName : $using:errorLabel : $pcName"
+            Write-Warning "$pcName : $errorLabel : $pcName"
         }
     }
 }

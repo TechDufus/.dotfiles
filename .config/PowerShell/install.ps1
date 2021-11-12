@@ -12,14 +12,6 @@ If (-Not($IsPSDependInstalled)) {
 }
 Invoke-PSDepend -Force (Join-Path $PSScriptRoot 'requirements.psd1')
 
-#Install winfetch script on windows
-if ($IsWindows -or $PSVersionTable.PSVersion.Major -eq 5) {
-    $IsInstalled = Get-InstalledScript 'pwshfetch-test-1'
-    If (-Not($IsInstalled)) {
-        Install-Script -Name 'pwshfetch-test-1' -Repository 'PSGallery'
-    }
-}
-
 
 If ($IncludePowerShellGitRepos.IsPresent) {
     . (Join-Path $PSScriptRoot 'Install-MyGitRepos.ps1')

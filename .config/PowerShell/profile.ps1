@@ -59,7 +59,9 @@ if (Get-Module PSReadLine) {
     }
     
     Set-PSReadLineOption -PredictionSource History
-    Set-PSReadLineOption -PredictionViewStyle ListView
+    If ($PSVersionTable.Version.Major -ge 6) {
+        Set-PSReadLineOption -PredictionViewStyle ListView
+    }
     Set-PSReadLineOption -HistorySearchCursorMovesToEnd
     # Commenting out the following because using ListView needs to use UpArrow and DownArrow for results.
     # Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
@@ -427,7 +429,7 @@ Function Remove-NoteProperty() {
     $NewObject
 }
 
-If (-Not($IsLinux)) {
+If ($IsWindows) {
     #Used to check if running elevated on windows
     $wid = [System.Security.Principal.WindowsIdentity]::GetCurrent()
     $prp = new-object System.Security.Principal.WindowsPrincipal($wid)
@@ -436,7 +438,8 @@ If (-Not($IsLinux)) {
 
     If (Get-InstalledScript 'pwshfetch-test-1') {
         Set-Alias -Name 'winfetch' 'pwshfetch-test-1.ps1'
-        winfetch
+        $WinfetchPath = [System.IO.Path]::Combine((Split-Path $PSScriptRoot -Parent), 'winfetch', 'config.ps1')
+        winfetch -ConfigPath $WinfetchPath
     }
 }
 
