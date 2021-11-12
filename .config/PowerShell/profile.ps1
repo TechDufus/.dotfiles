@@ -433,6 +433,11 @@ If (-Not($IsLinux)) {
     $prp = new-object System.Security.Principal.WindowsPrincipal($wid)
     $adm = [System.Security.Principal.WindowsBuiltInRole]::Administrator
     $IsAdmin = $prp.IsInRole($adm)
+
+    If (Get-InstalledScript 'pwshfetch-test-1') {
+        Set-Alias -Name 'winfetch' 'pwshfetch-test-1.ps1'
+        winfetch
+    }
 }
 
 

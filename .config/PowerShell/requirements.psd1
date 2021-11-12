@@ -10,6 +10,7 @@
     'oh-my-posh'        = 'latest'
     'AdminToolkit'      = 'latest'
     'HelpDesk'          = 'latest'
+    'PSIISHelper'       = 'latest'
     'PSReadLine'        = 'latest'
     'posh-git'          = 'latest'
     'ImportExcel'       = 'latest'
