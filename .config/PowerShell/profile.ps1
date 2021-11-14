@@ -429,7 +429,7 @@ Function Remove-NoteProperty() {
     $NewObject
 }
 
-If ($IsWindows) {
+If ($DetectedOS -eq 'Windows') {
     #Used to check if running elevated on windows
     $wid = [System.Security.Principal.WindowsIdentity]::GetCurrent()
     $prp = new-object System.Security.Principal.WindowsPrincipal($wid)
@@ -438,8 +438,8 @@ If ($IsWindows) {
 
     If (Get-InstalledScript 'pwshfetch-test-1') {
         Set-Alias -Name 'winfetch' 'pwshfetch-test-1.ps1'
-        $WinfetchPath = [System.IO.Path]::Combine((Split-Path $PSScriptRoot -Parent), 'winfetch', 'config.ps1')
-        winfetch -ConfigPath $WinfetchPath
+        $env:WINFETCH_CONFIG_PATH = [System.IO.Path]::Combine((Split-Path $PSScriptRoot -Parent), 'winfetch', 'config.ps1')
+        winfetch
     }
 }
 
