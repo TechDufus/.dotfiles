@@ -41,7 +41,8 @@ Function rcode() {
     Process {
         Try {
             code $Path -r
-        } Catch {
+        }
+        Catch {
             Throw $_
         }
     }
@@ -441,7 +442,42 @@ If ($DetectedOS -eq 'Windows') {
         $env:WINFETCH_CONFIG_PATH = [System.IO.Path]::Combine((Split-Path $PSScriptRoot -Parent), 'winfetch', 'config.ps1')
         winfetch
     }
+
+    function Set-PowerState {
+        [CmdletBinding()]
+        param (
+            [System.Windows.Forms.PowerState] $PowerState = [System.Windows.Forms.PowerState]::Suspend,
+            [switch] $DisableWake,
+            [switch] $Force
+        )
+    
+        begin {
+            Write-Verbose -Message 'Executing Begin block';
+    
+            if (!$DisableWake) { $DisableWake = $false; };
+            if (!$Force) { $Force = $false; };
+    
+            Write-Verbose -Message ('Force is: {0}' -f $Force);
+            Write-Verbose -Message ('DisableWake is: {0}' -f $DisableWake);
+        }
+    
+        process {
+            Write-Verbose -Message 'Executing Process block';
+            try {
+                $Result = [System.Windows.Forms.Application]::SetSuspendState($PowerState, $Force, $DisableWake);
+            }
+            catch {
+                Write-Error -Exception $_;
+            }
+        }
+    
+        end {
+            Write-Verbose -Message 'Executing End block';
+        }
+    }
 }
+
+
 
 
 <#
@@ -718,7 +754,7 @@ Function Get-ConsoleColors {
 if ($IsWindows -OR ($PSEdition -eq 'desktop')) {
 
     #test if there is a default WSL installation
-    $WslTest = ((wsl -l).split()).where({$_.length -gt 1}) -contains "(Default)"
+    $WslTest = ((wsl -l).split()).where({ $_.length -gt 1 }) -contains "(Default)"
     If ( -Not $WslTest) {
         Function ConvertTo-WSLPath() {
             Write-Warning "These commands require a WSL installation"
