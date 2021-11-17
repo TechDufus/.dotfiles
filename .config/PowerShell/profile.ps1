@@ -293,7 +293,7 @@ Function New-GitAddCommitPush() {
     }
 
     Write-Host "Adding all changed files..." @writeColor
-    git add .
+    git add -A
     Write-Host "Commiting files: $CommitMessage" @writeColor
     git commit -m $CommitMessage
     Write-Host "Pushing changes to remote.." @writeColor
