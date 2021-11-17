@@ -58,7 +58,7 @@ if (Get-Module PSReadLine) {
         Parameter        = [System.ConsoleColor]::Red
         InlinePrediction = [System.ConsoleColor]::Cyan
     }
-    
+
     Set-PSReadLineOption -PredictionSource History
     If ($PSVersionTable.Version.Major -ge 6) {
         Set-PSReadLineOption -PredictionViewStyle ListView
@@ -103,7 +103,7 @@ Function UpOneDir() {
                     }
                     $_
                 }
-            
+
                 $Folders
             })]
         [Parameter(Position = 0)]
@@ -130,7 +130,7 @@ Function UpTwoDir() {
                     }
                     $_
                 }
-            
+
                 $Folders
             })]
         [Parameter(Position = 0)]
@@ -157,7 +157,7 @@ Function UpThreeDir() {
                     }
                     $_
                 }
-            
+
                 $Folders
             })]
         [Parameter(Position = 0)]
@@ -244,7 +244,7 @@ Function Test-PowerShellProfilePerformance() {
             Write-Progress -Id 1 -Activity "$($Pwsh.ToUpper()) - No Profile" -PercentComplete $Percent
             $NoProfile += (Measure-Command {
                     &$Pwsh -noprofile -command 1
-                }).TotalMilliseconds 
+                }).TotalMilliseconds
         }
         Write-Progress -id 1 -Activity "$($Pwsh.ToUpper()) - No Profile" -Completed
         $Result['NoProfile_Average'] = "$($NoProfile/$Count)`ms"
@@ -264,10 +264,10 @@ Function Test-PowerShellProfilePerformance() {
     }
 }
 
-function _ { 
-    begin { 
+function _ {
+    begin {
         $pipe = { Set-Variable -Name LASTRESULT -Scope 1 }.GetSteppablePipeline()
-        $pipe.Begin($true) 
+        $pipe.Begin($true)
     }
 
     process {
@@ -293,7 +293,7 @@ Function New-GitAddCommitPush() {
     }
 
     Write-Host "Adding all changed files..." @writeColor
-    git add -A
+    git add .
     Write-Host "Commiting files: $CommitMessage" @writeColor
     git commit -m $CommitMessage
     Write-Host "Pushing changes to remote.." @writeColor
@@ -339,7 +339,7 @@ Function Update-GitRepos() {
         #EndRegion Variables
 
         #Region Test-GitRepo
-        
+
         Function Test-GitRepo() {
             [CmdletBinding()]
             Param(
@@ -450,17 +450,17 @@ If ($DetectedOS -eq 'Windows') {
             [switch] $DisableWake,
             [switch] $Force
         )
-    
+
         begin {
             Write-Verbose -Message 'Executing Begin block';
-    
+
             if (!$DisableWake) { $DisableWake = $false; };
             if (!$Force) { $Force = $false; };
-    
+
             Write-Verbose -Message ('Force is: {0}' -f $Force);
             Write-Verbose -Message ('DisableWake is: {0}' -f $DisableWake);
         }
-    
+
         process {
             Write-Verbose -Message 'Executing Process block';
             try {
@@ -470,7 +470,7 @@ If ($DetectedOS -eq 'Windows') {
                 Write-Error -Exception $_;
             }
         }
-    
+
         end {
             Write-Verbose -Message 'Executing End block';
         }
@@ -718,7 +718,7 @@ Function Get-ConsoleColors {
         LASTEDIT:
         - Add loops for foreground and background colors
         - output foreground and background colors for easy selection
-        
+
     .LINK
         https://github.com/compwiz32/PowerShell
 
@@ -727,21 +727,21 @@ Function Get-ConsoleColors {
 
     [CmdletBinding()]
     Param()
-    
-    $List = [enum]::GetValues([System.ConsoleColor]) 
-    
+
+    $List = [enum]::GetValues([System.ConsoleColor])
+
     ForEach ($Color in $List) {
         Write-Host "      $Color" -ForegroundColor $Color -NonewLine
-        Write-Host "" 
-        
+        Write-Host ""
+
     } #end foreground color ForEach loop
 
     ForEach ($Color in $List) {
         Write-Host "                   " -backgroundColor $Color -noNewLine
         Write-Host "   $Color"
-                
+
     } #end background color ForEach loop
-    
+
 } #end function
 
 # requires -version 5.1
