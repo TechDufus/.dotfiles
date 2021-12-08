@@ -798,9 +798,15 @@ if ($IsWindows -OR ($PSEdition -eq 'desktop')) {
         Param(
             [Parameter(Position = 0, HelpMessage = "Specify a text file path.")]
             [ValidatenotNullorEmpty()]
-            [ValidateScript({ Test-Path $_ })]
+            [ValidateScript({ 
+                If (-Not(Test-Path $_)) {
+                    $null=New-Item $_
+                }
+                Test-Path $_
+            })]
             [string]$Path
         )
+        Write-Verbose "Path: $Path"
         Write-Verbose "[$($myinvocation.mycommand)] Starting $($myinvocation.mycommand)"
         [string]$cmd = "wsl --exec nano"
         if ($Path) {
