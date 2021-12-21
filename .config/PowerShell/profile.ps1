@@ -443,6 +443,37 @@ If ($DetectedOS -eq 'Windows') {
         winfetch
     }
 
+    Function Get-Busy() {
+        [CmdletBinding()]
+        Param(
+            [Parameter(Position=0)]
+            [ArgumentCompleter({
+                Param(
+                    $CommandName,
+                    $ParameterName,
+                    $MatchAction
+                )
+                $PathToEXE = [System.IO.Path]::Combine($PSScriptRoot, '_assets', 'genact-v0.11.0-windows-x86_64.exe')
+                $Actions = (&$PathToEXE -l).Trim() | Select-Object -Skip 1
+                If ($null -eq $MatchAction) {
+                    $MatchAction = '*'
+                }
+                $Actions = $Actions | Where-Object {$_ -match $MatchAction}
+                Return $Actions
+            })]
+            [System.String]$Action
+        )
+
+        $PathToEXE = [System.IO.Path]::Combine($PSScriptRoot, '_assets', 'genact-v0.11.0-windows-x86_64.exe')
+        If (-Not($Action)) {
+            $Actions = (&$PathToEXE -l).Trim() | Select-Object -Skip 1
+            $Limit = $Actions.Count
+            $Action = $Actions[(Get-Random -Minimum 0 -Maximum ($Limit - 1))]
+
+        }
+        &$PathToEXE -m $Action
+    }
+
     function Set-PowerState {
         [CmdletBinding()]
         param (
