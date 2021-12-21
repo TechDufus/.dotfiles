@@ -469,7 +469,6 @@ If ($DetectedOS -eq 'Windows') {
             $Actions = (&$PathToEXE -l).Trim() | Select-Object -Skip 1
             $Limit = $Actions.Count
             $Action = $Actions[(Get-Random -Minimum 0 -Maximum ($Limit - 1))]
-
         }
         &$PathToEXE -m $Action
     }
