@@ -430,6 +430,11 @@ Function Remove-NoteProperty() {
     $NewObject
 }
 
+Function Clear-Screen() {
+    $x = $host.UI.RawUI.WindowSize.Height;
+    "$([System.Environment]::NewLine*$x)$([char]27)[$($x)A"
+}
+
 If ($DetectedOS -eq 'Windows') {
     #Used to check if running elevated on windows
     $wid = [System.Security.Principal.WindowsIdentity]::GetCurrent()
@@ -470,6 +475,8 @@ If ($DetectedOS -eq 'Windows') {
             $Limit = $Actions.Count
             $Action = $Actions[(Get-Random -Minimum 0 -Maximum ($Limit - 1))]
         }
+        Clear-Screen
+        Write-Host "-------- $Action --------" -ForegroundColor Green
         &$PathToEXE -m $Action
     }
 
