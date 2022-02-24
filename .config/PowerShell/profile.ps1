@@ -395,12 +395,12 @@ Function Update-GitRepos() {
         $AllNestedGitRepos | Foreach-Object {
             Try {
                 If ((Test-GitRepo $_).GitRepo) {
-                    Write-Host "Updating Repo: $($_)" @SuccessColors
+                    Write-Host "$(ConvertTo-Emoji -HexStr 2705) Updating Repo: $($_)" @SuccessColors
                     Set-Location $_
                     git pull
                 }
                 Else {
-                    Write-Host "Directory $($_) is not a git repo." @ErrorColors
+                    Write-Host "$(ConvertTo-Emoji -HexStr 274C) Directory $($_) is not a git repo." @ErrorColors
                 }
             }
             Finally {
