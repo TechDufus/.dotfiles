@@ -16,6 +16,7 @@
     'ImportExcel'       = 'latest'
     'PowerShellGet'     = 'latest'
     'PackageManagement' = 'latest'
+    'MyTasks'           = 'latest'
     'PSake'             = 'latest'
     'PSWriteColor'      = 'latest'
     'EditorServicesCommandSuite'  = 'latest'
