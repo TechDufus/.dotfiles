@@ -17,10 +17,11 @@ If ($IncludePowerShellGitRepos.IsPresent) {
     . (Join-Path $PSScriptRoot 'Install-MyGitRepos.ps1')
 }
 #Region Install all fonts
-If ($IsLinux -eq $false -or $null -eq $IsLinux) {
+If ($IsLinux -eq $false -or $null -eq $IsLinux -or $IsMacOS -eq $false -or $null -eq $IsMacOS) {
     If (Test-Administrator) {
         . (Join-Path $PSScriptRoot 'Install-MyFonts.ps1')
-    } else {
+    }
+    else {
         Write-Warning "You must run as admin to install fonts at system level."
     }
 }
@@ -37,7 +38,8 @@ If (Test-Path $PowerShellProfile) {
         Write-Host "Adding path to .config profile to '$($PowerShellProfile)'"
         $Pattern | Out-File -FilePath $PowerShellProfile -Append -force -Encoding ascii
     }
-} else {
+}
+else {
     Write-Host "Creating profile: CurrentUserAllHosts: '$($PowerShellProfile)'"
     New-Item -Path $PowerShellProfile -ItemType File -Force
     $ConfigProfilePath = Join-Path $PSScriptRoot 'profile.ps1'
