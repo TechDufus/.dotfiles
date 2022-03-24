@@ -8,16 +8,37 @@ $DetectedOS = switch ($true) {
 If ($PSVersionTable.PSVersion.Major -gt 5) {
     $hasOhMyPosh = Import-Module oh-my-posh -MinimumVersion 3.0 -PassThru -ErrorAction SilentlyContinue
     if ($hasOhMyPosh) {
-        Set-PoshPrompt avit
-        # $themePath = Join-Path $PSScriptRoot 'posh-theme.json'
+        Set-PoshPrompt nordtron
+        # $themePath = [System.IO.Path]::Combine($PSScriptRoot, 'posh-theme.json')
         # if (Test-Path $themePath) {
         #     Set-PoshPrompt -Theme $themePath
         # } else {
-        #     Set-PoshPrompt -Theme powerlevel10k_classic
+        #     # Set-PoshPrompt -Theme powerlevel10k_classic
         # }
     }
 }
 Import-Module posh-git
+
+
+if (Get-Module PSReadLine) {
+    Set-PSReadLineKeyHandler -Chord Alt+Enter -Function AddLine
+    Set-PSReadLineOption -ContinuationPrompt "  " -PredictionSource History -Colors @{
+        Operator         = [System.ConsoleColor]::DarkRed
+        Parameter        = [System.ConsoleColor]::Red
+        InlinePrediction = [System.ConsoleColor]::Cyan
+    }
+
+    Set-PSReadLineOption -PredictionSource History
+    If ($PSVersionTable.Version.Major -ge 6) {
+        Set-PSReadLineOption -PredictionViewStyle ListView
+    }
+    Set-PSReadLineOption -HistorySearchCursorMovesToEnd
+    # Commenting out the following because using ListView needs to use UpArrow and DownArrow for results.
+    # Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
+    # Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
+    Set-PSReadlineOption -BellStyle None
+}
+#EndRegion UX Config
 
 #Region rcode
 
@@ -51,27 +72,8 @@ Function rcode() {
 }
 #EndRegion rcode
 
-if (Get-Module PSReadLine) {
-    Set-PSReadLineKeyHandler -Chord Alt+Enter -Function AddLine
-    Set-PSReadLineOption -ContinuationPrompt "  " -PredictionSource History -Colors @{
-        Operator         = [System.ConsoleColor]::DarkRed
-        Parameter        = [System.ConsoleColor]::Red
-        InlinePrediction = [System.ConsoleColor]::Cyan
-    }
-
-    Set-PSReadLineOption -PredictionSource History
-    If ($PSVersionTable.Version.Major -ge 6) {
-        Set-PSReadLineOption -PredictionViewStyle ListView
-    }
-    Set-PSReadLineOption -HistorySearchCursorMovesToEnd
-    # Commenting out the following because using ListView needs to use UpArrow and DownArrow for results.
-    # Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
-    # Set-PSReadLineKeyHandler -Key DownArrow -Function HistorySearchForward
-    Set-PSReadlineOption -BellStyle None
-}
-#EndRegion UX Config
-
 Import-Module Terminal-Icons
+
 
 Function Get-GitLog() {
     git log --oneline --graph --decorate
@@ -84,6 +86,8 @@ Function Get-GitStatusProfileAlias() {
 Set-Alias -Name GS -Value Get-GitStatusProfileAlias
 
 Set-Alias -Name t -Value terraform
+Set-Alias -Name k -Value kubectl
+Set-Alias -Name kls -Value 'kubectl get pods'
 
 Function UpOneDir() {
     Param(
