@@ -8,13 +8,13 @@ $DetectedOS = switch ($true) {
 If ($PSVersionTable.PSVersion.Major -gt 5) {
     $hasOhMyPosh = Import-Module oh-my-posh -MinimumVersion 3.0 -PassThru -ErrorAction SilentlyContinue
     if ($hasOhMyPosh) {
-        Set-PoshPrompt nordtron
-        # $themePath = [System.IO.Path]::Combine($PSScriptRoot, 'posh-theme.json')
-        # if (Test-Path $themePath) {
-        #     Set-PoshPrompt -Theme $themePath
-        # } else {
-        #     # Set-PoshPrompt -Theme powerlevel10k_classic
-        # }
+        $themePath = [System.IO.Path]::Combine($PSScriptRoot, 'posh-theme.json')
+        if (Test-Path $themePath) {
+            Set-PoshPrompt -Theme $themePath
+        } else {
+            Set-PoshPrompt nordtron
+            # Set-PoshPrompt -Theme powerlevel10k_classic
+        }
     }
 }
 Import-Module posh-git
@@ -86,9 +86,27 @@ Function Get-GitStatusProfileAlias() {
 Set-Alias -Name GS -Value Get-GitStatusProfileAlias
 
 Set-Alias -Name t -Value terraform
-Set-Alias -Name k -Value kubectl
-Set-Alias -Name kls -Value 'kubectl get pods'
 
+
+#Region kubernetes
+Set-Alias -Name k -Value kubectl
+function GetPods() { kubectl get pods @args }
+Set-Alias -Name kgp -Value GetPods
+function GetServices() { kubectl get service @args }
+Set-Alias -Name kgs -Value GetServices
+function GetAll() { kubectl get all @args }
+Set-Alias -Name kga -Value GetAll
+function GetNodes() { kubectl get nodes -o wide }
+Set-Alias -Name kgn -Value GetNodes
+function DescribePod([string]$container) { kubectl describe @args }
+Set-Alias -Name kd -Value DescribePod
+function GetLogs() { kubectl logs @args }
+Set-Alias -Name kl -Value GetLogs
+function ApplyYaml() { kubectl apply @args }
+Set-Alias -Name ka -Value ApplyYaml
+function ExecContainerShell() { kubectl exec $args[0] -- $args[1..$($args.Count - 1)] }
+Set-Alias -Name kexec -Value ExecContainerShell
+#EndRegion kubernetes
 Function UpOneDir() {
     Param(
         [ArgumentCompleter( {
