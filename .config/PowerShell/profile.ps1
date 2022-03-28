@@ -89,23 +89,28 @@ Set-Alias -Name t -Value terraform
 
 
 #Region kubernetes
-Set-Alias -Name k -Value kubectl
-function GetPods() { kubectl get pods @args }
-Set-Alias -Name kgp -Value GetPods
-function GetServices() { kubectl get service @args }
-Set-Alias -Name kgs -Value GetServices
-function GetAll() { kubectl get all @args }
-Set-Alias -Name kga -Value GetAll
-function GetNodes() { kubectl get nodes -o wide }
-Set-Alias -Name kgn -Value GetNodes
-function DescribePod([string]$container) { kubectl describe @args }
-Set-Alias -Name kd -Value DescribePod
-function GetLogs() { kubectl logs @args }
-Set-Alias -Name kl -Value GetLogs
-function ApplyYaml() { kubectl apply @args }
-Set-Alias -Name ka -Value ApplyYaml
-function ExecContainerShell() { kubectl exec $args[0] -- $args[1..$($args.Count - 1)] }
-Set-Alias -Name kexec -Value ExecContainerShell
+If (Get-Command kubectl) {
+    Set-Alias -Name k -Value kubectl
+    function GetPods() { kubectl get pods @args }
+    Set-Alias -Name kgp -Value GetPods
+    function GetServices() { kubectl get service @args }
+    Set-Alias -Name kgs -Value GetServices
+    function GetAll() { kubectl get all @args }
+    Set-Alias -Name kga -Value GetAll
+    function GetNodes() { kubectl get nodes -o wide }
+    Set-Alias -Name kgn -Value GetNodes
+    function DescribePod([string]$container) { kubectl describe @args }
+    Set-Alias -Name kd -Value DescribePod
+    function GetLogs() { kubectl logs @args }
+    Set-Alias -Name kl -Value GetLogs
+    function ApplyYaml() { kubectl apply @args }
+    Set-Alias -Name ka -Value ApplyYaml
+    function ExecContainerShell() { kubectl exec $args[0] -- $args[1..$($args.Count - 1)] }
+    Set-Alias -Name kexec -Value ExecContainerShell
+
+    #Bootstrap kubectl autocompletion for powershell
+    # kubectl completion powershell | Out-String | Invoke-Expression
+}
 #EndRegion kubernetes
 Function UpOneDir() {
     Param(

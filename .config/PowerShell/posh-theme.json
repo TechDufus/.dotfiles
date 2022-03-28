@@ -55,7 +55,7 @@
             "foreground": "#ffffff",
             "leading_diamond": "\ue0b2",
             "properties": {
-                "template": " \uFD31 {{if .Namespace}}{{.Namespace}} :: {{end}}{{.Context}} "
+                "template": " \uFD31 {{.Context}}{{if .Namespace}} :: {{.Namespace}}{{end}} "
             },
             "style": "diamond",
             "trailing_diamond": "<transparent,#06b8ee>\ue0b2</>",
