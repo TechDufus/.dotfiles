@@ -1,0 +1,53 @@
+---
+- name: Update apt
+  apt:
+    update_cache: yes
+    upgrade: "yes"
+    autoremove: yes
+  become: yes
+
+- name: Install apt packages
+  apt:
+    name: "{{ item }}"
+    state: "{{ package_state }}"
+    update_cache: yes
+    force: yes
+  become: yes
+  loop:
+    - kubernetes
+    - containerd
+    - docker
+    - net-tools
+
+- name: Install terraform
+  block:
+  - name: Install terraform prerequisites
+    apt:
+      name: "{{ item }}"
+      state: "{{ package_state }}"
+      update_cache: yes
+    loop:
+      - gnupg
+      - software-properties-common
+      - curl
+
+  - name: Add HashiCorp GPG key
+    shell: |
+      curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+    args:
+      executable: /bin/bash
+
+  - name: Add the official HashiCorp Linux repository
+    shell: |
+      apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+    args:
+      executable: /bin/bash
+
+  - name: Update and install terraform
+    apt:
+      name: terraform
+      state: "{{ package_state }}"
+      update_cache: yes
+  become: yes
+
+
