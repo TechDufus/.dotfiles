@@ -4,7 +4,7 @@
     update_cache: yes
     upgrade: "yes"
     autoremove: yes
-  become: yes
+  become: true
 
 - name: Install apt packages
   apt:
@@ -12,7 +12,7 @@
     state: "{{ package_state }}"
     update_cache: yes
     force: yes
-  become: yes
+  become: true
   loop:
     - kubernetes
     - containerd
@@ -48,6 +48,6 @@
       name: terraform
       state: "{{ package_state }}"
       update_cache: yes
-  become: yes
+  become: true
 
 

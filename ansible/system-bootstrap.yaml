@@ -1,0 +1,24 @@
+---
+- hosts:
+    - localhost
+
+  pre_tasks:
+    - name: Detect WSL
+      import_tasks: pre_tasks/detect_wsl.yaml
+
+    - name: Detect running as Admin
+      import_tasks: pre_tasks/detect_admin.yaml
+      when: ansible_host_is_wsl == true
+
+  roles:
+    - role: wsl
+      tags: ["wsl"]
+      when: ansible_host_is_wsl == true
+
+    - role: windows
+      tags: ["windows", "wsl"]
+      when: (windows_running_as_admin == true) and (ansible_host_is_wsl == true)
+    
+    - role: ubuntu
+      tags: ["ubuntu"]
+      when: (ansible_host_is_wsl != true) and (ansible_os_family|lower == 'debian')
