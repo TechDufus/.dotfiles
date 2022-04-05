@@ -1,0 +1,11 @@
+---
+- name: Configure Windows PowerShell ExecutionPolicy
+  shell: |
+    $CurrentPolicy = Get-ExecutionPolicy
+    Set-ExecutionPolicy RemoteSigned -Force -Scope CurrentUser
+
+    Write-Host ($CurrentPolicy -eq 'RemoteSigned')
+  register: ps_exec_result
+  changed_when: ps_exec_result.stdout != 'True'
+  args:
+    executable: powershell.exe

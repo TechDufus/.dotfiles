@@ -1,0 +1,8 @@
+---
+- name: Configure Ubuntu Common Config
+  import_tasks: ubuntu.yaml
+  when: (ansible_os_family|lower == 'debian') and (ansible_host_is_wsl != true)
+
+- name: Configure WSL Common Config
+  import_tasks: wsl.yaml
+  when: (ansible_os_family|lower == 'debian') and (ansible_host_is_wsl == true)

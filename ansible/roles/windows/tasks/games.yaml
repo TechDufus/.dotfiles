@@ -1,0 +1,20 @@
+---
+- name: Install game-related packages from winget
+  shell: |
+    $OriginallyNotInstalled = [bool](winget list {{ item }}).Contains('No installed package')
+    If ($OriginallyNotInstalled) {
+      winget install {{ item }}
+      $IsNotInstalled = [bool](winget list {{ item }}).Contains('No installed package')
+      If ($IsNotInstalled) {
+        $Ansible.Failed = $true
+      }
+    } else {
+      $false
+    }
+  args:
+    executable: powershell.exe
+  register: winget_install_result
+  changed_when: winget_install_result.stdout != 'False'
+  loop:
+    - Valve.Steam
+    - EpicGames.EpicGamesLauncher

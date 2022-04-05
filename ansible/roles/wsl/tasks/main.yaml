@@ -1,4 +1,0 @@
----
-- name: Install apt packages
-  import_tasks: apt.yaml
-  when: ansible_os_family|lower == 'debian'

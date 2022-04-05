@@ -1,0 +1,64 @@
+---
+- name: Update apt
+  apt:
+    update_cache: yes
+    upgrade: "yes"
+    autoremove: yes
+  become: true
+
+- name: Install apt packages
+  apt:
+    name: "{{ item }}"
+    state: "{{ package_state }}"
+    update_cache: yes
+    force: yes
+  become: true
+  loop:
+    - kubernetes
+    - containerd
+    - docker
+    - net-tools
+
+- name: Install terraform
+  block:
+    - name: Install terraform prerequisites
+      apt:
+        name: "{{ item }}"
+        state: "{{ package_state }}"
+        update_cache: yes
+      loop:
+        - gnupg
+        - software-properties-common
+        - curl
+
+    - name: Add HashiCorp GPG key
+      apt_key:
+        url: https://apt.releases.hashicorp.com/gpg
+        state: present
+
+    - name: Add the official HashiCorp Linux repository
+      shell: apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+      args:
+        executable: /bin/bash
+
+    - name: Update and install terraform
+      apt:
+        name: terraform
+        state: "{{ package_state }}"
+        update_cache: yes
+  become: true
+
+- name: Install bash profile
+  block:
+    - name: Copy bash profile
+      copy:
+        src: "{{ role_path }}/files/.bash_profile"
+        dest: "~/.bash_profile"
+
+    - name: Source bash profile in ~/.bashrc
+      shell: |
+        if ! grep -F 'if [ -f ~/.bash_profile ]; then' ~/.bashrc; then
+            echo 'if [ -f ~/.bash_profile ]; then; source ~/.bash_profile; fi' >> ~/.bashrc
+        fi
+      args:
+        executable: /bin/bash

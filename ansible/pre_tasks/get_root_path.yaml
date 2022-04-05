@@ -1,0 +1,12 @@
+---
+- name: Detect root directory
+  shell: (Resolve-Path ../).ProviderPath
+  register: dotfiles_root_directory
+  changed_when: false
+  args:
+    executable: powershell.exe
+  ignore_errors: true
+
+- name: Register dotfiles_root_directory Fact
+  set_fact:
+    dotfiles_root_directory: "{{ dotfiles_root_directory.stdout }}"

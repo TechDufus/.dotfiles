@@ -6,19 +6,18 @@
     - name: Detect WSL
       import_tasks: pre_tasks/detect_wsl.yaml
 
+    - name: Confirm Windows PowerShell Execution Policy
+      import_tasks: pre_tasks/powershell_executionpolicy.yaml
+      when: ansible_host_is_wsl == true
+
     - name: Detect running as Admin
       import_tasks: pre_tasks/detect_admin.yaml
       when: ansible_host_is_wsl == true
 
-  roles:
-    - role: wsl
-      tags: ["wsl"]
+    - name: Detect dotfiles root path
+      import_tasks: pre_tasks/get_root_path.yaml
       when: ansible_host_is_wsl == true
 
-    - role: windows
-      tags: ["windows", "wsl"]
-      when: (windows_running_as_admin == true) and (ansible_host_is_wsl == true)
-    
-    - role: ubuntu
-      tags: ["ubuntu"]
-      when: (ansible_host_is_wsl != true) and (ansible_os_family|lower == 'debian')
+  roles:
+    - { role: common, tags: ["common"] }
+    - { role: windows, tags: ["windows"], when: ansible_host_is_wsl == true }

@@ -5,6 +5,7 @@
     (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
   register: windows_running_as_admin
   any_errors_fatal: true
+  changed_when: false
   args:
     executable: powershell.exe
   

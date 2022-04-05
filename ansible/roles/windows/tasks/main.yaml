@@ -1,0 +1,6 @@
+---
+- import_tasks: __init__.yaml
+
+- import_tasks: games.yaml
+
+- import_tasks: misc.yaml
