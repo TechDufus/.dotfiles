@@ -52,13 +52,14 @@
   block:
     - name: Copy bash profile
       copy:
-        src: "{{ role_path }}/files/.bash_profile"
-        dest: "~/.bash_profile"
+        src: files/.bash_profile
+        dest: "~/"
+        force: true
 
-    - name: Source bash profile in ~/.bashrc
-      shell: |
-        if ! grep -F 'if [ -f ~/.bash_profile ]; then' ~/.bashrc; then
-            echo 'if [ -f ~/.bash_profile ]; then source ~/.bash_profile; fi' >> ~/.bashrc
-        fi
-      args:
-        executable: /bin/bash
+    # - name: Source bash profile in ~/.bashrc
+    #   shell: |
+    #     if ! grep -F 'if [ -f ~/.bash_profile ]; then' ~/.bashrc; then
+    #         echo 'if [ -f ~/.bash_profile ]; then source ~/.bash_profile; fi' >> ~/.bashrc
+    #     fi
+    #   args:
+    #     executable: /bin/bash
