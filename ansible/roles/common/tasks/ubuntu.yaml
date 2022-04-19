@@ -18,6 +18,9 @@
     - containerd
     - docker
     - net-tools
+    - python3-pip
+    - lolcat
+    - ranger
 
 - name: Install terraform
   block:
