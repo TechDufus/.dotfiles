@@ -1,14 +1,13 @@
 ---
 - name: Detect WSL
   shell: |
-    if [[ $(cat /proc/version | grep "microsoft.*WSL") ]]; then
+    if [[ $(uname -r) == *"microsoft"* ]]; then
       echo true
     fi
   register: ansible_host_is_wsl
   args:
     executable: /bin/bash
   changed_when: false
-  ignore_errors: true
 
 - name: Register ansible_host_is_wsl Fact
   set_fact:

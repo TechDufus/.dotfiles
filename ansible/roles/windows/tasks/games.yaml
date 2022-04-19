@@ -1,12 +1,12 @@
 ---
 - name: Install game-related packages from winget
   shell: |
-    $OriginallyNotInstalled = [bool](winget list {{ item }}).Contains('No installed package')
+    $OriginallyNotInstalled = [bool](winget list {{ item }})[-1].Contains('No installed package found matching input criteria.')
     If ($OriginallyNotInstalled) {
       winget install {{ item }}
-      $IsNotInstalled = [bool](winget list {{ item }}).Contains('No installed package')
+      $IsNotInstalled = [bool](winget list {{ item }})[-1].Contains('No installed package found matching input criteria.')
       If ($IsNotInstalled) {
-        $Ansible.Failed = $true
+        Write-Error "{{ item }} failed to install."
       }
     } else {
       $false

@@ -1,12 +1,12 @@
 ---
 - name: Install miscellaneous winget packages
   shell: |
-    $OriginallyNotInstalled = [bool](winget list {{ item }}).Contains('No installed package')
+    $OriginallyNotInstalled = [bool](winget list {{ item }})[-1].Contains('No installed package found matching input criteria.')
     If ($OriginallyNotInstalled) {
       winget install {{ item }}
-      $IsNotInstalled = [bool](winget list {{ item }}).Contains('No installed package')
+      $IsNotInstalled = [bool](winget list {{ item }})[-1].Contains('No installed package found matching input criteria.')
       If ($IsNotInstalled) {
-        $Ansible.Failed = $true
+        Write-Error "{{ item }} failed to install."
       }
     } else {
       $false
@@ -17,12 +17,12 @@
   changed_when: winget_install_result.stdout != 'False'
   loop:
     - Discord.Discord
-    - Logitech.GHUB
+    # - Logitech.GHUB
     - Microsoft.Powershell
     - Microsoft.PowerToys
     - Microsoft.VisualStudioCode
-    - Microsoft.Terminal
+    - Microsoft.WindowsTerminal
     - Notion.Notion
     - AntoineAflalo.SoundSwitch
     - Spotify.Spotify
-    - Streamlabs.StreamlabsOBS
+    - Streamlabs.Streamlabs

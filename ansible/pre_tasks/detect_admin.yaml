@@ -2,7 +2,9 @@
 - name: Detect if process is running as Administrator
   shell: |
     $User = [Security.Principal.WindowsIdentity]::GetCurrent()
-    (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
+    If (-Not(New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)) {
+        $Ansible.Failed = True
+    }
   register: windows_running_as_admin
   any_errors_fatal: true
   changed_when: false

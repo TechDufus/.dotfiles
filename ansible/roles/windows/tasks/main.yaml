@@ -4,3 +4,5 @@
 - import_tasks: games.yaml
 
 - import_tasks: misc.yaml
+
+# - import_tasks: powershell_setup.yaml
