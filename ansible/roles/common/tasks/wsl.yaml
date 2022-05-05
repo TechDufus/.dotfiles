@@ -19,8 +19,8 @@
     - docker
     - net-tools
     - python3-pip
-    - hollywood
     - lolcat
+    - ranger
 
 - name: Install terraform
   block:

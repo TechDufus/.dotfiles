@@ -17,7 +17,7 @@ If ($IncludePowerShellGitRepos.IsPresent) {
     . (Join-Path $PSScriptRoot 'Install-MyGitRepos.ps1')
 }
 #Region Install all fonts
-If ($IsLinux -eq $false -or $null -eq $IsLinux -or $IsMacOS -eq $false -or $null -eq $IsMacOS) {
+If (($IsLinux -eq $false -or $null -eq $IsLinux) -and ($IsMacOS -eq $false -or $null -eq $IsMacOS)) {
     If (Test-Administrator) {
         . (Join-Path $PSScriptRoot 'Install-MyFonts.ps1')
     }
