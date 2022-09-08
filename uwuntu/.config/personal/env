@@ -4,7 +4,7 @@
 # Required for x applications
 # setxkbmap -option caps:ctrl_modifier
 
-export STOW_FOLDERS="nvim,uwuntu,"
+export STOW_FOLDERS="nvim,uwuntu,bash"
 
 
 change_background() {
@@ -27,16 +27,3 @@ addToPathFront() {
         export PATH=$1:$PATH
     fi
 }
-
-# commitDotFiles() {
-#     pushd $DOTFILES
-#     pushd personal
-#     git add .
-#     git commit -m "automagic messaging from me in the past.  Have you checked up your butthole?"
-#     git push origin master
-#     popd
-#     git add .
-#     git commit -m "automagic messaging from me in the past.  Have you checked up your butthole?"
-#     git push origin master
-#     popd
-# }

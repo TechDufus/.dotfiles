@@ -1,7 +1,7 @@
 
-source /home/techdufus/.config/nvim/themes/airline.vim
 source /home/techdufus/.config/nvim/general/sets.vim
-source /home/techdufus/.config/nvim/plugins/plugins.vim
+source /home/techdufus/.config/nvim/themes/airline.vim
+source /home/techdufus/.config/nvim/plugin/plugins.vim
 
 
 colorscheme gruvbox

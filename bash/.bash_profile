@@ -19,22 +19,6 @@ HOT="${ORANGE}\xF0\x9F\x94\xA5${NC}"
 WARNING="${RED}\xF0\x9F\x9A\xA8${NC}"
 RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
 
-alias update='sudo nala update && sudo nala upgrade -y && sudo nala autoremove -y'
-alias t=terraform
-alias k=kubectl
-alias mk=microk8s
-source <(kubectl completion bash)
-complete -F __start_kubectl k
-alias kexec='kubectl exec -it'
-alias v=vagrant
-alias gs='git status'
-alias ga='git add'
-alias ll='ls -half'
-alias bt='bpytop'
-alias vi='nvim'
-alias vim='nvim'
-alias ni='nvim'
-
 kgp() {
     kubectl get pods $@
 }
@@ -80,4 +64,9 @@ k8s_info() {
 
 ## Customizations
 PS1="\[\e[1;92m\][\w]\[\e[33m\]\$(parse_git_branch) \[\e[01;33m\][\$(k8s_info)]\[\e[34m\] $>\[\e[96m\] "
+
+
+source ~/.config/personal/alias
+source ~/.config/personal/env
+source ~/.config/personal/paths
 
