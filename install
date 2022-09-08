@@ -25,14 +25,14 @@ pushd $DOTFILES > /dev/null 2>&1
 IFS=',' read -r -a STOW_FOLDERS <<< "$STOW_FOLDERS"
 
 for folder in "${STOW_FOLDERS[@]}"; do
-    echo "  ${RIGHT_ANGLE}${GREEN} EXECUTE: ${YELLOW}stow $folder -t $HOME${NC}"
-    stow -D $folder
-    stow $folder -t $HOME
+    echo -e "  ${RIGHT_ANGLE}${GREEN} EXECUTE: ${YELLOW}stow $folder${NC}"
+    stow -D "$folder"
+    stow "$folder"
 
-    if $folder == "bash"; then
+    if [[ "$folder" == "bash" ]]; then
         # Check if a line is in .bashrc
-        if ! grep -q "if [ -f ~/.bash_profile ]; then . ~/.bash_profile; fi" "$HOME/.bashrc"; then
-            echo -e "Adding source of .bash_profile to .bashrc"
+        if ! grep -Fxq "if [ -f ~/.bash_profile ]; then . ~/.bash_profile; fi" "$HOME/.bashrc"; then
+            echo -e "    ${RIGHT_ANGLE} ${YELLOW}Adding source of .bash_profile to .bashrc${NC}"
             echo "if [ -f ~/.bash_profile ]; then . ~/.bash_profile; fi" >> "$HOME/.bashrc"
         fi
     fi
