@@ -20,22 +20,45 @@ WARNING="${RED}\xF0\x9F\x9A\xA8${NC}"
 RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
 
 alias update='sudo nala update && sudo nala upgrade -y && sudo nala autoremove -y'
+alias t=terraform
 alias k=kubectl
-alias kgp='kubectl get pods'
-alias kgs='kubectl get service'
-alias kga='kubectl get all'
-alias kgn='kubectl get nodes -o wide'
-alias kd='kubectl describe'
-alias kl='kubectl logs'
-alias ka='kubectl apply'
-alias kexec='kubectl exec'
+alias mk=microk8s
+source <(kubectl completion bash)
+complete -F __start_kubectl k
+alias kexec='kubectl exec -it'
 alias v=vagrant
 alias gs='git status'
+alias ga='git add'
+alias ll='ls -half'
+alias bt='bpytop'
 alias vi='nvim'
 alias vim='nvim'
 alias ni='nvim'
-# alias ll='ls -la'
-alias ll='ls -alFh'
+
+kgp() {
+    kubectl get pods $@
+}
+kga() {
+	kubectl get all $@
+}
+kgs() {
+	kubectl get service $@
+}
+kgn() {
+	kubectl get nodes -o wide $@
+}
+kd() {
+	kubectl describe $@
+}
+kl() {
+	kubectl logs $@
+}
+ka() {
+	kubectl apply $@
+}
+ktp() {
+	kubectl top pods $@
+}
 
 gacp() {
   git add -A
@@ -55,10 +78,6 @@ k8s_info() {
   kubectl config view --minify --output 'jsonpath={..namespace}@{.current-context}' 2> /dev/null
 }
 
-export PATH="$HOME/.local/bin:$PATH"
-PATH=$PATH:/usr/local/go/bin:"$HOME/go/bin"
-
 ## Customizations
 PS1="\[\e[1;92m\][\w]\[\e[33m\]\$(parse_git_branch) \[\e[01;33m\][\$(k8s_info)]\[\e[34m\] $>\[\e[96m\] "
-
 
