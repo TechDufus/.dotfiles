@@ -28,15 +28,15 @@ addToPathFront() {
     fi
 }
 
-commitDotFiles() {
-    pushd $DOTFILES
-    pushd personal
-    git add .
-    git commit -m "automagic messaging from me in the past.  Have you checked up your butthole?"
-    git push origin master
-    popd
-    git add .
-    git commit -m "automagic messaging from me in the past.  Have you checked up your butthole?"
-    git push origin master
-    popd
-}
+# commitDotFiles() {
+#     pushd $DOTFILES
+#     pushd personal
+#     git add .
+#     git commit -m "automagic messaging from me in the past.  Have you checked up your butthole?"
+#     git push origin master
+#     popd
+#     git add .
+#     git commit -m "automagic messaging from me in the past.  Have you checked up your butthole?"
+#     git push origin master
+#     popd
+# }
