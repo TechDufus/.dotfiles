@@ -10,12 +10,6 @@ alias pclip="xclip -selection clipboard"
 
 alias update='sudo nala update && sudo nala upgrade -y && sudo nala autoremove -y'
 alias t=terraform
-alias k=kubectl
-alias mk=microk8s
-source <(kubectl completion bash)
-complete -F __start_kubectl k
-alias kexec='kubectl exec -it'
-alias v=vagrant
 alias gs='git status'
 alias ga='git add'
 alias ll='ls -half'
