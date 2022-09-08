@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+pushd $DOTFILES > /dev/null 2>&1
+#Convert STOW_FOLDERS to array
+IFS=',' read -r -a STOW_FOLDERS <<< "$STOW_FOLDERS"
+
+for folder in "${STOW_FOLDERS[@]}"; do
+    echo "stow $folder"
+    stow -D $folder
+    stow $folder
+done
+popd > /dev/null 2>&1
+
