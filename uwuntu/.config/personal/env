@@ -6,7 +6,9 @@
 
 export STOW_FOLDERS="nvim,uwuntu,bash"
 
-
+go-nvim() {
+    pushd ~/.config/nvim
+}
 change_background() {
     dconf write /org/mate/desktop/background/picture-filename "'$HOME/.config/backgrounds/$(ls ~/.config/backgrounds | fzf)'"
 }

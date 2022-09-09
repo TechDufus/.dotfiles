@@ -24,6 +24,11 @@ set scrolloff=8
 set noshowmode
 set completeopt=menuone,noinsert,noselect
 set signcolumn=yes
+set splitbelow
+set splitright
+set updatetime=250
+set encoding=UTF-8
+
 
 " Give more space for displaying messages.
 set cmdheight=2
