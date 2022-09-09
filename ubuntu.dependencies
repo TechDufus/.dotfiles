@@ -22,8 +22,11 @@ RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
 
 # Ensure apt repo dependencies are installed
 sudo add-apt-repository ppa:neovim-ppa/unstable -y > /dev/null 2>&1
+pushd /tmp > /dev/null 2>&1 && git clone git@github.com:wbthomason/packer.nvim.git ~/.local/share/nvim/site/pack/packer/start/packer.nvim > /dev/null 2>&1 && popd > /dev/null 2>&1
 
 echo -e "${CHECK_MARK}${GREEN} All apt repositories are added!${NC}"
+
+
 
 # List dependencies and loop through installing them if not present
 # Create array of apt dependencies in stacked format
