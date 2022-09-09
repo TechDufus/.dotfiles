@@ -41,6 +41,7 @@ DEPENDENCIES=(
     "stow"
     "neovim"
     "kubeadm"
+    "fzf"
 )
 
 for dependency in "${DEPENDENCIES[@]}"; do

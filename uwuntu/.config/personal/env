@@ -8,7 +8,7 @@ export STOW_FOLDERS="nvim,uwuntu,bash"
 
 
 change_background() {
-    dconf write /org/mate/desktop/background/picture-filename "'$HOME/dotfiles/backgrounds/$(ls ~/dotfiles/backgrounds | fzf)'"
+    dconf write /org/mate/desktop/background/picture-filename "'$HOME/.config/backgrounds/$(ls ~/.config/backgrounds | fzf)'"
 }
 
 die () {
