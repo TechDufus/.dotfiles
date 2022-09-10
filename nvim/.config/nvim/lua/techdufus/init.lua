@@ -24,7 +24,7 @@ autocmd('TextYankPost', {
 })
 
 autocmd({"BufEnter", "BufWinEnter", "TabEnter"}, {
-    group = ThePrimeagenGroup,
+    group = TechDufusGroup,
     pattern = "*.rs",
     callback = function()
         require("lsp_extensions").inlay_hints{}
@@ -32,7 +32,7 @@ autocmd({"BufEnter", "BufWinEnter", "TabEnter"}, {
 })
 
 autocmd({"BufWritePre"}, {
-    group = ThePrimeagenGroup,
+    group = TechDufusGroup,
     pattern = "*",
     command = "%s/\\s\\+$//e",
 })
