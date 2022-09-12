@@ -3,7 +3,6 @@ local options = {
     exrc = true,                             -- enable .exrc files
     hidden = true,                           -- enable modified buffers in background
     nu = true,                               -- enable line numbers
-    undodir = '~/.vim/undo',                 -- set undo directory
     undofile = true,                         -- enable persistent undo
     clipboard = "unnamedplus",               -- allows neovim to access the system clipboard
     cmdheight = 2,                           -- more space in the neovim command line for displaying messages

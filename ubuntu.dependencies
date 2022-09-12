@@ -31,27 +31,27 @@ echo -e "${CHECK_MARK}${GREEN} All apt repositories are added!${NC}"
 # List dependencies and loop through installing them if not present
 # Create array of apt dependencies in stacked format
 DEPENDENCIES=(
-    "git"
-    "curl"
-    "wget"
-    "vim"
-    "ansible"
-    "python3"
-    "python3-pip"
-    "python3-venv"
-    "lua5.3"
-    "terraform"
-    "stow"
-    "neovim"
-    "kubeadm"
-    "fzf"
+  "git"
+  "curl"
+  "wget"
+  "vim"
+  "ansible"
+  "python3"
+  "python3-pip"
+  "python3-venv"
+  "lua5.3"
+  "terraform"
+  "stow"
+  "neovim"
+  "kubeadm"
+  "fzf"
 )
 
 for dependency in "${DEPENDENCIES[@]}"; do
-    if ! dpkg -s "$dependency" > /dev/null 2>&1; then
-        echo -e "${ARROW}${YELLOW} Installing ${GREEN}$dependency${NC}"
-        sudo apt-get install "$dependency" -y > /dev/null 2>&1
-    fi
+  if ! dpkg -s "$dependency" > /dev/null 2>&1; then
+    echo -e "${ARROW}${YELLOW} Installing ${GREEN}$dependency${NC}"
+    sudo apt-get install "$dependency" -y > /dev/null 2>&1
+  fi
 done
 
 echo -e "${CHECK_MARK}${GREEN} All dependencies installed!${NC}"
