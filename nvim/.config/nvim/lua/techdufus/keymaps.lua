@@ -62,9 +62,10 @@ keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Telescope --
-keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files()<cr>", opts)
-keymap("n", "<leader>pg", "<cmd>Telescope live_grep<cr>", opts)
-
+keymap("n", "<leader>pf", "<cmd>lua require'telescope.builtin'.find_files()<cr>", opts)
+keymap("n", "<leader>pg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
+-- Telescope find files in nvim config directory
+keymap("n", "<leader>nc", "<cmd>lua require'telescope.builtin'.find_files({cwd = '~/.dotfiles/nvim/.config/nvim'})<cr>", opts)
 
 
 

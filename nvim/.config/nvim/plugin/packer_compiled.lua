@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/copilot.vim",
     url = "https://github.com/github/copilot.vim"
   },
+  fd = {
+    loaded = true,
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/fd",
+    url = "https://github.com/sharkdp/fd"
+  },
   gruvbox = {
     loaded = true,
     path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/gruvbox",
@@ -118,6 +123,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
+  },
+  ripgrep = {
+    loaded = true,
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/ripgrep",
+    url = "https://github.com/BurntSushi/ripgrep"
   },
   ["telescope-media-files.nvim"] = {
     loaded = true,
