@@ -55,7 +55,6 @@ return packer.startup(function(use)
   use "sharkdp/fd"
   use "kyazdani42/nvim-web-devicons"
 
-
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

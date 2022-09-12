@@ -62,13 +62,18 @@ keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Telescope --
-keymap("n", "<leader>pf", "<cmd>lua require'telescope.builtin'.find_files()<cr>", opts)
-keymap("n", "<leader>pg", "<cmd>lua require('telescope.builtin').live_grep()<cr>", opts)
+keymap("n", "<leader>pf", "<cmd>lua require'telescope.builtin'.find_files({ hidden = true })<cr>", opts)
+keymap("n", "<leader>pg", "<cmd>lua require('telescope.builtin').live_grep({ hidden = true })<cr>", opts)
 -- Telescope find files in nvim config directory
 keymap("n", "<leader>nc", "<cmd>lua require'telescope.builtin'.find_files({cwd = '~/.dotfiles/nvim/.config/nvim'})<cr>", opts)
 
-
-
+-- Harpoon --
+keymap("n", "<leader>a", "<cmd>lua require'harpoon.mark'.add_file(1)<cr>", opts)
+keymap("n", "<leader>e", "<cmd>lua require'harpoon.ui'.toggle_quick_menu()<cr>", opts)
+keymap("n", "<leader>j", "<cmd>lua require'harpoon.ui'.nav_file(1)<cr>", opts)
+keymap("n", "<leader>k", "<cmd>lua require'harpoon.ui'.nav_file(2)<cr>", opts)
+keymap("n", "<leader>l", "<cmd>lua require'harpoon.ui'.nav_file(3)<cr>", opts)
+keymap("n", "<leader>;", "<cmd>lua require'harpoon.ui'.nav_file(4)<cr>", opts)
 
 
 
