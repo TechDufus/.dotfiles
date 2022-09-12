@@ -50,6 +50,7 @@ DEPENDENCIES=(
   "fzf"
   "npm"
   "ripgrep"
+  "fd-find"
 )
 
 for dependency in "${DEPENDENCIES[@]}"; do
