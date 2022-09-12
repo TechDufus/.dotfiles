@@ -49,6 +49,7 @@ DEPENDENCIES=(
   "kubeadm"
   "fzf"
   "npm"
+  "ripgrep"
 )
 
 for dependency in "${DEPENDENCIES[@]}"; do

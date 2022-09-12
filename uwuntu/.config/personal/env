@@ -7,7 +7,7 @@
 export STOW_FOLDERS="nvim,uwuntu,bash"
 
 go-nvim() {
-    pushd ~/.config/nvim
+    cd ~/.dotfiles/nvim/.config/nvim
 }
 change_background() {
     dconf write /org/mate/desktop/background/picture-filename "'$HOME/anime/$(ls ~/anime| fzf)'"
