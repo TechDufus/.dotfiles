@@ -1,4 +1,6 @@
-# Matthew DeGarmo's PowerShell Profile
+# The Dufus's .config stuffs
+
+## `powershell` directory
 This is where store my PowerShell profile.
 Ideally you would need to be an admin to run this..
 
