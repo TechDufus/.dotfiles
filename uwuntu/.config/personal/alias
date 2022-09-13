@@ -17,3 +17,16 @@ alias bt='bpytop'
 alias vi='nvim'
 alias vim='nvim'
 alias ni='nvim'
+alias g='git'
+alias c='clear'
+alias d='docker'
+alias k='kubectl'
+alias kx='kubectl exec -it'
+
+
+
+
+
+
+
+
