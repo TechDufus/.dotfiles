@@ -55,6 +55,20 @@ return packer.startup(function(use)
   use "sharkdp/fd"
   use "kyazdani42/nvim-web-devicons"
   use 'shoukoo/commentary.nvim'
+  use {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  }
+  use {
+    'feline-nvim/feline.nvim',
+    config = function()
+      require('feline').setup()
+    end
+  }
+  use 's1n7ax/nvim-terminal'
+
 
 
 
