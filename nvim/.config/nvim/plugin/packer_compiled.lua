@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/catppuccin",
     url = "https://github.com/catppuccin/nvim"
   },
+  ["commentary.nvim"] = {
+    loaded = true,
+    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/commentary.nvim",
+    url = "https://github.com/shoukoo/commentary.nvim"
+  },
   ["copilot.vim"] = {
     loaded = true,
     path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/copilot.vim",
@@ -98,11 +103,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
-  },
-  ["nvim-comment"] = {
-    loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/nvim-comment",
-    url = "https://github.com/terrortylor/nvim-comment"
   },
   ["nvim-lspconfig"] = {
     loaded = true,

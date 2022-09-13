@@ -54,8 +54,7 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" 
   use "sharkdp/fd"
   use "kyazdani42/nvim-web-devicons"
-  use "terrortylor/nvim-comment"
-
+  use 'shoukoo/commentary.nvim'
 
 
 
