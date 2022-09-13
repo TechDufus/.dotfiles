@@ -54,6 +54,10 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" 
   use "sharkdp/fd"
   use "kyazdani42/nvim-web-devicons"
+  use "terrortylor/nvim-comment"
+
+
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

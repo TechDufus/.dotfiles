@@ -24,7 +24,7 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)
+keymap("n", "<leader>w", ":Lex 30<cr>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -68,7 +68,7 @@ keymap("n", "<leader>pg", "<cmd>lua require('telescope.builtin').live_grep({ hid
 keymap("n", "<leader>nc", "<cmd>lua require'telescope.builtin'.find_files({cwd = '~/.dotfiles/nvim/.config/nvim'})<cr>", opts)
 
 -- Harpoon --
-keymap("n", "<leader>a", "<cmd>lua require'harpoon.mark'.add_file(1)<cr>", opts)
+keymap("n", "<leader>a", "<cmd>lua require'harpoon.mark'.add_file()<cr>", opts)
 keymap("n", "<leader>e", "<cmd>lua require'harpoon.ui'.toggle_quick_menu()<cr>", opts)
 keymap("n", "<leader>j", "<cmd>lua require'harpoon.ui'.nav_file(1)<cr>", opts)
 keymap("n", "<leader>k", "<cmd>lua require'harpoon.ui'.nav_file(2)<cr>", opts)
