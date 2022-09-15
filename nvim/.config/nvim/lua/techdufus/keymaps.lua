@@ -26,6 +26,21 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 
 keymap("n", "<leader>w", ":Lex 30<cr>", opts)
 
+-- System clipboard
+-- Copy to clipboard in normal, visual, select and operator modes
+keymap("n", "<leader>y", '"+y', opts)
+keymap("v", "<leader>y", '"+y', opts)
+keymap("x", "<leader>y", '"+y', opts)
+keymap("n", "<leader>Y", '"+yy', opts)
+keymap("v", "<leader>Y", '"+yy', opts)
+keymap("x", "<leader>Y", '"+yy', opts)
+  
+-- Paste from clipboard in normal, visual, select and operator modes
+keymap("n", "<leader>p", '"+p', opts)
+keymap("v", "<leader>p", '"+p', opts)
+keymap("x", "<leader>p", '"+p', opts)
+
+
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)
@@ -65,15 +80,15 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 keymap("n", "<leader>pf", "<cmd>lua require'telescope.builtin'.find_files({ hidden = true })<cr>", opts)
 keymap("n", "<leader>pg", "<cmd>lua require('telescope.builtin').live_grep({ hidden = true })<cr>", opts)
 -- Telescope find files in nvim config directory
-keymap("n", "<leader>nc", "<cmd>lua require'telescope.builtin'.find_files({cwd = '~/.dotfiles/nvim/.config/nvim'})<cr>", opts)
+keymap("n", "<leader>rc", "<cmd>lua require'telescope.builtin'.find_files({cwd = '~/.dotfiles/nvim/.config/nvim'})<cr>", opts)
 
 -- Harpoon --
 keymap("n", "<leader>a", "<cmd>lua require'harpoon.mark'.add_file()<cr>", opts)
 keymap("n", "<leader>e", "<cmd>lua require'harpoon.ui'.toggle_quick_menu()<cr>", opts)
-keymap("n", "<leader>j", "<cmd>lua require'harpoon.ui'.nav_file(1)<cr>", opts)
-keymap("n", "<leader>k", "<cmd>lua require'harpoon.ui'.nav_file(2)<cr>", opts)
-keymap("n", "<leader>l", "<cmd>lua require'harpoon.ui'.nav_file(3)<cr>", opts)
-keymap("n", "<leader>;", "<cmd>lua require'harpoon.ui'.nav_file(4)<cr>", opts)
+keymap("n", "<leader>h", "<cmd>lua require'harpoon.ui'.nav_file(1)<cr>", opts)
+keymap("n", "<leader>t", "<cmd>lua require'harpoon.ui'.nav_file(2)<cr>", opts)
+keymap("n", "<leader>n", "<cmd>lua require'harpoon.ui'.nav_file(3)<cr>", opts)
+keymap("n", "<leader>s", "<cmd>lua require'harpoon.ui'.nav_file(4)<cr>", opts)
 
 
 

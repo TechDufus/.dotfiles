@@ -68,6 +68,18 @@ return packer.startup(function(use)
     end
   }
   use 's1n7ax/nvim-terminal'
+  use {
+    'noib3/nvim-cokeline',
+    requires = 'kyazdani42/nvim-web-devicons', -- If you want devicons
+    config = function()
+      require('cokeline').setup()
+    end
+  }
+
+
+
+
+
 
 
 
