@@ -23,6 +23,7 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
+keymap("n", ";", ":", opts)
 
 keymap("n", "<leader>w", ":Lex 30<cr>", opts)
 
@@ -65,6 +66,11 @@ keymap("v", ">", ">gv", opts)
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
+-- Move line up/down
+keymap("n", "<leader>j", "ddp", opts)
+keymap("n", "<leader>k", "ddkP", opts)
+
+
 
 -- Visual Block --
 -- Move text up and down
@@ -82,9 +88,15 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- Telescope --
 keymap("n", "<leader>pf", "<cmd>lua require'telescope.builtin'.find_files({ hidden = true })<cr>", opts)
-keymap("n", "<leader>pg", "<cmd>lua require('telescope.builtin').live_grep({ hidden = true })<cr>", opts)
+keymap("n", "<leader>ps", "<cmd>lua require('telescope.builtin').live_grep({ hidden = true })<cr>", opts)
+keymap("n", "<leader>pg", "<cmd>lua require('telescope.builtin').git_files()<cr>", opts)
 -- Telescope find files in nvim config directory
 keymap("n", "<leader>rc", "<cmd>lua require'telescope.builtin'.find_files({cwd = '~/.dotfiles/nvim/.config/nvim'})<cr>", opts)
+keymap("n", "<leader>1", "<cmd>lua require'telescope.builtin'.buffers()<cr>", opts)
+
+
+
+
 
 -- Harpoon --
 keymap("n", "<leader>a", "<cmd>lua require'harpoon.mark'.add_file()<cr>", opts)

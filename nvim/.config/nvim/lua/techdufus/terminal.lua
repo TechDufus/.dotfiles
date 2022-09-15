@@ -43,12 +43,12 @@ require('nvim-terminal').setup({
     -- keymap to decrease the window height
     decrease_height_keymap = '<leader>-',
 
-    terminals = {
-        -- keymaps to open nth terminal
-        {keymap = '<leader>1'},
-        {keymap = '<leader>2'},
-        {keymap = '<leader>3'},
-        {keymap = '<leader>4'},
-        {keymap = '<leader>5'},
-    },
+    -- terminals = {
+    --     -- keymaps to open nth terminal
+    --     {keymap = '<leader>1'},
+    --     {keymap = '<leader>2'},
+    --     {keymap = '<leader>3'},
+    --     {keymap = '<leader>4'},
+    --     {keymap = '<leader>5'},
+    -- },
 })

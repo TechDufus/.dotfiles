@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/home/techdufus/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/techdufus/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/techdufus/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/techdufus/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/home/techdufus/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/home/ad09305/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/home/ad09305/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/home/ad09305/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/home/ad09305/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/home/ad09305/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -76,96 +76,106 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   catppuccin = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/catppuccin",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/catppuccin",
     url = "https://github.com/catppuccin/nvim"
   },
   ["commentary.nvim"] = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/commentary.nvim",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/commentary.nvim",
     url = "https://github.com/shoukoo/commentary.nvim"
   },
   ["copilot.vim"] = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/copilot.vim",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/copilot.vim",
     url = "https://github.com/github/copilot.vim"
   },
   fd = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/fd",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/fd",
     url = "https://github.com/sharkdp/fd"
   },
   ["feline.nvim"] = {
     config = { "\27LJ\2\0024\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\vfeline\frequire\0" },
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/feline.nvim",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/feline.nvim",
     url = "https://github.com/feline-nvim/feline.nvim"
   },
   ["gitsigns.nvim"] = {
     config = { "\27LJ\2\0026\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rgitsigns\frequire\0" },
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   gruvbox = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/gruvbox",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/gruvbox",
     url = "https://github.com/gruvbox-community/gruvbox"
   },
   harpoon = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/harpoon",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
+  },
+  ["lualine.nvim"] = {
+    loaded = true,
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["nvim-cokeline"] = {
     config = { "\27LJ\2\0026\0\0\2\0\3\0\0066\0\0\0'\1\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\rcokeline\frequire\0" },
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/nvim-cokeline",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/nvim-cokeline",
     url = "https://github.com/noib3/nvim-cokeline"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-terminal"] = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/nvim-terminal",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/nvim-terminal",
     url = "https://github.com/s1n7ax/nvim-terminal"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
     url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["popup.nvim"] = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/popup.nvim",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
   ["telescope-media-files.nvim"] = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/telescope-media-files.nvim",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/telescope-media-files.nvim",
     url = "https://github.com/nvim-telescope/telescope-media-files.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   }
 }
 
