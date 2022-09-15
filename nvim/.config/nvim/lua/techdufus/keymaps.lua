@@ -40,6 +40,10 @@ keymap("n", "<leader>p", '"+p', opts)
 keymap("v", "<leader>p", '"+p', opts)
 keymap("x", "<leader>p", '"+p', opts)
 
+-- Insert blank line above and below current line
+keymap("n", "<leader>o", "m`o<Esc>``", opts)
+keymap("n", "<leader>O", "m`O<Esc>``", opts)
+
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
