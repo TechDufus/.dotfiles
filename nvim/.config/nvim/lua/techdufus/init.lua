@@ -1,3 +1,7 @@
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded = 1
+vim.g.loaded_netrwPlugin = 1
+
 
 require('techdufus.plugins')
 require('techdufus.options')
@@ -6,6 +10,7 @@ require('techdufus.keymaps')
 require('techdufus.autocommands')
 require('techdufus.telescope')
 require('techdufus.statusline')
+require('techdufus.nvim-tree')
 
 
 

@@ -25,7 +25,7 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", ";", ":", opts)
 
-keymap("n", "<leader>w", ":Lex 30<cr>", opts)
+keymap("n", "<leader>w", ":NvimTreeFocus<cr>", opts)
 
 -- System clipboard
 -- Copy to clipboard in normal, visual, select and operator modes
@@ -89,11 +89,11 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 -- Telescope --
 keymap("n", "<leader>pf", "<cmd>lua require'telescope.builtin'.find_files({ hidden = true })<cr>", opts)
 keymap("n", "<leader>ps", "<cmd>lua require('telescope.builtin').live_grep({ hidden = true })<cr>", opts)
-keymap("n", "<leader>pg", "<cmd>lua require('telescope.builtin').git_files()<cr>", opts)
+-- keymap("n", "<leader>pg", "<cmd>lua require('telescope.builtin').git_files()<cr>", opts)
 -- Telescope find files in nvim config directory
 keymap("n", "<leader>rc", "<cmd>lua require'telescope.builtin'.find_files({cwd = '~/.dotfiles/nvim/.config/nvim'})<cr>", opts)
 keymap("n", "<leader>1", "<cmd>lua require'telescope.builtin'.buffers()<cr>", opts)
-
+keymap("n", "<Leader>pg", "<CMD>lua require'techdufus.telescope'.project_files()<CR>", {noremap = true, silent = true})
 
 
 
