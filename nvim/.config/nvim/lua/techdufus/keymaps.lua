@@ -96,8 +96,6 @@ keymap("n", "<leader>1", "<cmd>lua require'telescope.builtin'.buffers()<cr>", op
 keymap("n", "<Leader>pg", "<CMD>lua require'techdufus.telescope'.project_files()<CR>", {noremap = true, silent = true})
 
 
-
-
 -- Harpoon --
 keymap("n", "<leader>a", "<cmd>lua require'harpoon.mark'.add_file()<cr>", opts)
 keymap("n", "<leader>e", "<cmd>lua require'harpoon.ui'.toggle_quick_menu()<cr>", opts)

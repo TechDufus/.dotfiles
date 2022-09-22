@@ -11,7 +11,7 @@ require('techdufus.autocommands')
 require('techdufus.telescope')
 require('techdufus.statusline')
 require('techdufus.nvim-tree')
-
+require('techdufus.toggleterm')
 
 
 
