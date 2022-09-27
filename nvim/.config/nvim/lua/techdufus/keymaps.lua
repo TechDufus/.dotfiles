@@ -27,19 +27,6 @@ keymap("n", ";", ":", opts)
 
 keymap("n", "<leader>w", ":NvimTreeFocus<cr>", opts)
 
--- System clipboard
--- Copy to clipboard in normal, visual, select and operator modes
-keymap("n", "<leader>y", '"+y', opts)
-keymap("v", "<leader>y", '"+y', opts)
-keymap("x", "<leader>y", '"+y', opts)
-keymap("n", "<leader>Y", '"+yy', opts)
-keymap("v", "<leader>Y", '"+yy', opts)
-keymap("x", "<leader>Y", '"+yy', opts)
-  
--- Paste from clipboard in normal, visual, select and operator modes
-keymap("n", "<leader>p", '"+p', opts)
-keymap("v", "<leader>p", '"+p', opts)
-keymap("x", "<leader>p", '"+p', opts)
 
 -- Insert blank line above and below current line
 keymap("n", "<leader>o", "m`o<Esc>``", opts)
