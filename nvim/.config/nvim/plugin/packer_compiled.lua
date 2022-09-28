@@ -106,6 +106,11 @@ _G.packer_plugins = {
     path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["gofmt.vim"] = {
+    loaded = true,
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/gofmt.vim",
+    url = "https://github.com/tweekmonster/gofmt.vim"
+  },
   gruvbox = {
     loaded = true,
     path = "/home/techdufus/.local/share/nvim/site/pack/packer/start/gruvbox",
