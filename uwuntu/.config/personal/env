@@ -31,7 +31,7 @@ go-upgrade() {
     echo -e "${ARROW} ${GREEN}Installing...${NC}"
     sudo mv go /usr/local
     popd > /dev/null 2>&1
-    echo -e "${CHECK_MARK} ${GREEN}Successfully Installed GO Version: ${YELLOW}$(go version)${NC}"
+    echo -e "${CHECK_MARK} ${GREEN}Successfully Installed GO Version: ${YELLOW}$(/usr/local/go/bin/go version)${NC}"
 }
 
 addToPath() {
