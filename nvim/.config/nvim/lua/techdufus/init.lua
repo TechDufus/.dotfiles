@@ -13,6 +13,7 @@ require('techdufus.statusline')
 require('techdufus.nvim-tree')
 require('techdufus.toggleterm')
 require('techdufus.lsp')
+require('techdufus.nvim-go')
 
 
 

@@ -54,6 +54,7 @@ return packer.startup(function(use)
   use "neovim/nvim-lspconfig" 
   use "sharkdp/fd"
   use "kyazdani42/nvim-web-devicons"
+  use "ryanoasis/vim-devicons"
   use 'shoukoo/commentary.nvim'
   use {
     'lewis6991/gitsigns.nvim',
@@ -77,9 +78,8 @@ return packer.startup(function(use)
   }
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
   use 'akinsho/toggleterm.nvim'
-  use 'tweekmonster/gofmt.vim'
-
-
+  -- use 'tweekmonster/gofmt.vim'
+  use 'crispgm/nvim-go'
 
 
 

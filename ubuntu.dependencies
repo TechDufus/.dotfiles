@@ -51,10 +51,31 @@ DEPENDENCIES=(
   "fd-find"
 )
 
+NPM_DEPENDENCIES=(
+  "dockerfile-language-server-nodejs"
+  "bash-language-server"
+  "typescript-language-server"
+  "yaml-language-server"
+  "vscode-langservers-extracted"
+  "vscode-css-languageserver-bin"
+  "vscode-html-languageserver-bin"
+  "vscode-json-languageserver"
+  "go-langserver"
+)
+
 for dependency in "${DEPENDENCIES[@]}"; do
   if ! dpkg -s "$dependency" > /dev/null 2>&1; then
     echo -e "${ARROW}${YELLOW} Installing ${GREEN}$dependency${NC}"
     sudo apt-get install "$dependency" -y > /dev/null 2>&1
+  fi
+done
+
+# Install NPM dependencies
+
+for dependency in "${NPM_DEPENDENCIES[@]}"; do
+  if ! npm list -g "$dependency" > /dev/null 2>&1; then
+    echo -e "${ARROW}${YELLOW} Installing ${GREEN}$dependency${NC}"
+    sudo npm install -g "$dependency" > /dev/null 2>&1
   fi
 done
 

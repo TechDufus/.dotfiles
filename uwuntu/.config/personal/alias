@@ -24,6 +24,9 @@ alias k='kubectl'
 alias kx='kubectl exec -it'
 
 
+if [ -x "$(command -v zoxide)" ]; then
+  eval "$(zoxide init bash)"
+fi
 
 
 
