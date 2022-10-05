@@ -80,7 +80,7 @@ return packer.startup(function(use)
   use 'akinsho/toggleterm.nvim'
   -- use 'tweekmonster/gofmt.vim'
   use 'crispgm/nvim-go'
-
+  use 'andweeb/presence.nvim'
 
 
   -- Automatically set up your configuration after cloning packer.nvim
