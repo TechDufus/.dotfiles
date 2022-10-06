@@ -30,10 +30,6 @@ pushd ~ 2>&1 > /dev/null && \
 
 echo -e "${CHECK_MARK}${GREEN} All apt repositories are added!${NC}"
 
-
-
-# List dependencies and loop through installing them if not present
-# Create array of apt dependencies in stacked format
 DEPENDENCIES=(
   "git"
   "curl"
