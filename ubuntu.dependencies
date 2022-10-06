@@ -49,7 +49,14 @@ DEPENDENCIES=(
   "npm"
   "ripgrep"
   "fd-find"
+  "gopls"
 )
+
+echo -e "${ARROW}${GREEN} Installing new npm...${NC}"
+sudo npm install -g n > /dev/null 2>&1
+sudo n stable > /dev/null 2>&1
+hash -r > /dev/null 2>&1
+
 
 NPM_DEPENDENCIES=(
   "dockerfile-language-server-nodejs"
@@ -71,12 +78,18 @@ for dependency in "${DEPENDENCIES[@]}"; do
 done
 
 # Install NPM dependencies
-
 for dependency in "${NPM_DEPENDENCIES[@]}"; do
   if ! npm list -g "$dependency" > /dev/null 2>&1; then
     echo -e "${ARROW}${YELLOW} Installing ${GREEN}$dependency${NC}"
     sudo npm install -g "$dependency" > /dev/null 2>&1
   fi
 done
+
+
+# These commands need to be run after the dependencies are installed
+#sudo chown -R $USER:$USER /usr/local/lib/node_modules > /dev/null 2>&1
+# Inside nvim, run :PackerSync and :GoInstallBinaries
+#sudo chown -R root:root /usr/local/lib/node_modules > /dev/null 2>&1
+
 
 echo -e "${CHECK_MARK}${GREEN} All dependencies installed!${NC}"
