@@ -26,7 +26,8 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", ";", ":", opts)
 
 keymap("n", "<leader>w", ":NvimTreeFocus<cr>", opts)
-
+-- Unhilight search --
+keymap("n", "<leader>chl", ":nohl<cr>", opts)
 
 -- Insert blank line above and below current line
 keymap("n", "<leader>o", "m`o<Esc>``", opts)
