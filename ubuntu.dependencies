@@ -24,7 +24,7 @@ RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
 sudo add-apt-repository ppa:neovim-ppa/unstable -y > /dev/null 2>&1
 
 pushd ~ 2>&1 > /dev/null && \
-  git clone https://github.com/matthewjdegarmo/anime.git 2>&1 > /dev/null && \
+  git clone https://github.com/techdufus/anime.git 2>&1 > /dev/null && \
   popd 2>&1 > /dev/null
 
 
