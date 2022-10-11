@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 alias xsc="xclip -selection clipboard"
-alias my_ip="ip address | grep -o \"inet 192.*/\" | awk '{ print \$2 }' | tr / ' ' | xargs"
 alias python="python3"
 alias yolo="git push origin master --force --no-verify"
 alias dotFileInstall="$DOTFILES/install"

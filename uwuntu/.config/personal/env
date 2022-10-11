@@ -23,7 +23,7 @@ go-upgrade() {
     OS=linux
     ARCH=amd64
     pushd /tmp > /dev/null 2>&1
-    echo -e "${ARROW} ${GREEN}Downloading upgrade...${NC}"
+    echo -e "${ARROW} ${GREEN}Downloading upgrade $VERSION...${NC}"
     wget -q https://storage.googleapis.com/golang/$VERSION.$OS-$ARCH.tar.gz
     echo -e "${ARROW} ${GREEN}Extracting...${NC}"
     tar -xvf $VERSION.$OS-$ARCH.tar.gz > /dev/null 2>&1
