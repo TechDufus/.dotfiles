@@ -4,6 +4,5 @@ require("nvim-tree").setup {
   view = {
     side = "left",
     width = 30,
-    auto_resize = true,
   }
 }
