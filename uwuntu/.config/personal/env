@@ -5,6 +5,7 @@
 # setxkbmap -option caps:ctrl_modifier
 
 export STOW_FOLDERS="nvim,uwuntu,bash"
+export EDITOR="nvim"
 
 go-nvim() {
     cd ~/.dotfiles/nvim/.config/nvim
@@ -40,6 +41,22 @@ k9s-upgrade() {
     echo -e "${ARROW} ${GREEN}k9s ${VERSION} installed${NC}"
     k9s version
     popd > /dev/null 2>&1
+}
+
+newRole() {
+    if [ -z "$1" ]; then
+        die "Usage: newRole <role name>"
+    fi
+    # Check to see if we are in the ansible or ansible-roles directory
+    # If we are in ansible, create the role in ansible-roles
+    # If we are in ansible-roles, create the role in ansible-roles
+    # If we are in neither, error out
+    if [ ! -d "ansible" ] && [ ! -d "roles" ]; then
+        echo -e "${WARNING} ${RED}Must be in ansible or roles directory."
+    else
+        echo -e "${ARROW} ${GREEN}Creating role in roles...${NC}"
+        ansible-galaxy init roles/$1
+    fi
 }
 
 
