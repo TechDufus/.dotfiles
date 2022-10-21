@@ -36,6 +36,7 @@ DEPENDENCIES=(
   "wget"
   "vim"
   "ansible"
+  "ansible-lint"
   "python3"
   "python3-pip"
   "terraform"
@@ -64,6 +65,8 @@ NPM_DEPENDENCIES=(
   "vscode-html-languageserver-bin"
   "vscode-json-languageserver"
   "go-langserver"
+  "ansible-language-server"
+  "pyright"
 )
 
 for dependency in "${DEPENDENCIES[@]}"; do
@@ -81,6 +84,17 @@ for dependency in "${NPM_DEPENDENCIES[@]}"; do
   fi
 done
 
+# Install pip dependencies
+PYTHON_DEPENDENCIES=(
+  "pynvim"
+)
+
+for dependency in "${PYTHON_DEPENDENCIES[@]}"; do
+  if ! pip3 list | grep "$dependency" > /dev/null 2>&1; then
+    echo -e "${ARROW}${YELLOW} Installing ${GREEN}$dependency${NC}"
+    pip3 install --user --upgrade pynvim > /dev/null 2>&1
+  fi
+done
 
 # These commands need to be run after the dependencies are installed
 #sudo chown -R $USER:$USER /usr/local/lib/node_modules > /dev/null 2>&1

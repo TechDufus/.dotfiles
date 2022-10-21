@@ -81,6 +81,7 @@ return packer.startup(function(use)
   -- use 'tweekmonster/gofmt.vim'
   use 'crispgm/nvim-go'
   use 'nathom/filetype.nvim'
+  use 'erikzaadi/vim-ansible-yaml'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

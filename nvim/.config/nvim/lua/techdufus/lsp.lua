@@ -7,7 +7,8 @@ require('lspconfig').bashls.setup{}
 require('lspconfig').jsonls.setup{}
 require('lspconfig').html.setup{}
 require('lspconfig').dockerls.setup{}
-
+require('lspconfig').ansiblels.setup{}
+require('lspconfig').pyright.setup{}
 
 
 local nvim_lsp = require('lspconfig')
@@ -32,6 +33,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   buf_set_keymap('n', '<Leader>dl', '<cmd>Telescope diagnostics<CR>', opts)
+  buf_set_keymap('n', '<Leader>ld', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
   buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
@@ -41,7 +43,7 @@ end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 
-local servers = { 'gopls', 'solargraph', 'yamlls', 'bashls', 'jsonls', 'html', 'dockerls' }
+local servers = { 'ansiblels', 'gopls', 'solargraph', 'yamlls', 'bashls', 'jsonls', 'html', 'dockerls', 'pyright' }
 
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
@@ -51,6 +53,36 @@ for _, lsp in ipairs(servers) do
     }
   }
 end
+
+require('lspconfig').ansiblels.setup{
+  cmd = { "ansible-language-server", "--stdio" },
+  filetypes = { "yaml", "yml" },
+  root_dir = function(fname)
+    return vim.loop.cwd()
+  end,
+  settings = {
+    ansible = {
+      ansible = {
+        path = "ansible"
+      },
+      ansibleLint = {
+        enabled = true,
+        path = "ansible-lint"
+      },
+      python = {
+        interpreterPath = "python",
+      }
+    }
+  }
+}
+
+require('lspconfig').pyright.setup {
+  flags = {
+    allow_incremental_sync = false
+  }
+}
+
+
 
 function go_org_imports(wait_ms)
   local params = vim.lsp.util.make_range_params()

@@ -187,6 +187,11 @@ _G.packer_plugins = {
     path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
     url = "https://github.com/akinsho/toggleterm.nvim"
   },
+  ["vim-ansible-yaml"] = {
+    loaded = true,
+    path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/vim-ansible-yaml",
+    url = "https://github.com/erikzaadi/vim-ansible-yaml"
+  },
   ["vim-devicons"] = {
     loaded = true,
     path = "/home/ad09305/.local/share/nvim/site/pack/packer/start/vim-devicons",
