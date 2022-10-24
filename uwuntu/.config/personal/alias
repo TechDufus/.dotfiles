@@ -9,19 +9,21 @@ alias pclip="xclip -selection clipboard"
 
 alias update='sudo nala update && sudo nala upgrade -y && sudo nala autoremove -y'
 alias t=terraform
+alias g='git'
 alias gs='git status'
-alias ga='git add'
+alias gc='git checkout'
+alias gcb='git checkout -b'
+alias gcane='git commit --amend --no-edit'
 alias ll='ls -halF'
 alias bt='bpytop'
 alias vi='nvim'
 alias vim='nvim'
 alias ni='nvim'
-alias g='git'
 alias c='clear'
 alias d='docker'
 alias k='kubectl'
 alias kx='kubectl exec -it'
-
+alias ugr='pwsh -c Update-GitRepos'
 
 if [ -x "$(command -v zoxide)" ]; then
   eval "$(zoxide init bash)"
