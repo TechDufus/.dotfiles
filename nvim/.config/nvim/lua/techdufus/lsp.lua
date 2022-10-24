@@ -70,7 +70,7 @@ require('lspconfig').ansiblels.setup{
         path = "ansible-lint"
       },
       python = {
-        interpreterPath = "python",
+        interpreterPath = "python3",
       }
     }
   }
