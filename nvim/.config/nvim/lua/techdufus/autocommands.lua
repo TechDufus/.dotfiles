@@ -6,9 +6,8 @@
 --   augroup END
 --
 --   ]]
-
 vim.api.nvim_create_augroup('bufcheck', {clear = true})
-
+vim.cmd 'autocmd BufRead,BufNewFile *.yml set filetype=yaml.ansible'
 -- reload config file on change
 vim.api.nvim_create_autocmd('BufWritePost', {
     group    = 'bufcheck',
@@ -42,6 +41,14 @@ vim.api.nvim_create_autocmd('BufWritePost', {
    --        vim.keymap.set('n', '<enter>'    , 'K'    , {buffer=true})
    --        vim.keymap.set('n', '<backspace>', '<c-o>', {buffer=true})
    --        end })
+
+-- vim.api.nvim_create_autocmd('BufRead', {
+--     group    = 'bufcheck',
+--     pattern  = '*.yml','*.yaml',
+--     command  = function()
+--       if search('hosts:|tasks:', 'nw') then
+--         vim.bo.filetype = 'ansible'
+--       end end })
 
     -- -- Return to last edit position when opening files
     -- vim.api.nvim_create_autocmd('BufReadPost',  {

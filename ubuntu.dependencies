@@ -22,6 +22,8 @@ RIGHT_ANGLE="${GREEN}\xE2\x88\x9F${NC}"
 
 # Ensure apt repo dependencies are installed
 sudo add-apt-repository ppa:neovim-ppa/unstable -y > /dev/null 2>&1
+sudo apt-add-repository ppa:ansible/ansible -y > /dev/null 2>&1
+# curl -sL "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x93C4A3FD7BB9C367" | sudo apt-key add
 
 pushd ~ 2>&1 > /dev/null && \
   git clone https://github.com/techdufus/anime.git 2>&1 > /dev/null && \
