@@ -19,10 +19,8 @@ local options = {
     swapfile = false,                        -- creates a swapfile
     termguicolors = true,                    -- set term gui colors (most terminals support this)
     scrolloff = 8,                           -- is one of my fav
-    cmdheight = 2,                           -- more space in the neovim command line for displaying messages
     colorcolumn = "85",                      -- limit line length
     timeoutlen = 1000,                        -- time to wait for a mapped sequence to complete (in milliseconds)
-    undofile = true,                         -- enable persistent undo
     updatetime = 25,                         -- faster completion (4000ms default)
     writebackup = false,                     -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
     expandtab = true,                        -- convert tabs to spaces
@@ -34,16 +32,12 @@ local options = {
     numberwidth = 4,                         -- set number column width to 2 {default 4}
     signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
     wrap = false,                            -- display lines as one long line
-    scrolloff = 8,                           -- is one of my fav
     sidescrolloff = 8,
     guifont = "monospace:h17",               -- the font used in graphical neovim applications
     errorbells = false,                      -- no error bells
-    swapfile = false,                        -- no swap file
-    showmode = false,                       -- no mode
   }
-  
   vim.opt.shortmess:append "c"
-  
+
   for k, v in pairs(options) do
     vim.opt[k] = v
   end
@@ -55,10 +49,6 @@ require('catppuccin').setup({
   term_colors = true,
 })
 vim.cmd [[colorscheme catppuccin]]
-
- 
-
-  vim.cmd "set whichwrap+=<,>,[,],h,l"
-  vim.cmd [[set iskeyword+=-]]
-  vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work
-  
+vim.cmd "set whichwrap+=<,>,[,],h,l"
+vim.cmd [[set iskeyword+=-]]
+vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work

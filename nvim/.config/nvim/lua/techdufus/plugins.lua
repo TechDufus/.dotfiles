@@ -48,7 +48,7 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope-media-files.nvim"
   use "ThePrimeagen/harpoon"
   use "gruvbox-community/gruvbox"
-  use "github/copilot.vim"
+  -- use "github/copilot.vim"
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use { "catppuccin/nvim", as = "catppuccin" }
   use "neovim/nvim-lspconfig" 
@@ -86,23 +86,41 @@ return packer.startup(function(use)
     'VonHeikemen/lsp-zero.nvim',
     requires = {
       -- LSP Support
-      {'neovim/nvim-lspconfig'},
-      {'williamboman/mason.nvim'},
-      {'williamboman/mason-lspconfig.nvim'},
+      'neovim/nvim-lspconfig',
+      'williamboman/mason.nvim',
+      'williamboman/mason-lspconfig.nvim',
 
       -- Autocompletion
-      {'hrsh7th/nvim-cmp'},
-      {'hrsh7th/cmp-buffer'},
-      {'hrsh7th/cmp-path'},
-      {'saadparwaiz1/cmp_luasnip'},
-      {'hrsh7th/cmp-nvim-lsp'},
-      {'hrsh7th/cmp-nvim-lua'},
+      'hrsh7th/nvim-cmp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
 
       -- Snippets
-      {'L3MON4D3/LuaSnip'},
-      {'rafamadriz/friendly-snippets'},
+      'L3MON4D3/LuaSnip',
+      'rafamadriz/friendly-snippets',
     }
   }
+  use {
+    'zbirenbaum/copilot.lua',
+    event = 'VimEnter',
+    config = function()
+      vim.defer_fn(function()
+        require('copilot').setup()
+      end, 100)
+    end,
+  }
+
+  use {
+    'zbirenbaum/copilot-cmp',
+    after = {'copilot.lua'},
+    config = function ()
+      require('copilot_cmp').setup()
+    end
+  }
+  use 'ThePrimeagen/vim-be-good'
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then

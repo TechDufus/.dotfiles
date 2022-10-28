@@ -424,6 +424,7 @@ Function Update-GitRepos() {
                 If ((Test-GitRepo $_).GitRepo) {
                     Set-Location $_
                     $GitBranch = git rev-parse --abbrev-ref HEAD
+                    $MainBranch = $(git branch -l master main)
                     Write-Host "$(ConvertTo-Emoji -HexStr 2705) Updating Repo: [$GitBranch] $($_)" @SuccessColors
                     git pull | Out-Null
                 }

@@ -1,7 +1,3 @@
-
-
-
-
 require('feline').setup({
   provider = {
     name = 'file_info',
