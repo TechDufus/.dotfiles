@@ -42,13 +42,6 @@ local options = {
     vim.opt[k] = v
   end
 
- -- Theme Settings
-vim.g.catppuccin_flavour = "mocha"
-require('catppuccin').setup({
-  transparent_background = true,
-  term_colors = true,
-})
-vim.cmd [[colorscheme catppuccin]]
 vim.cmd "set whichwrap+=<,>,[,],h,l"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]] -- TODO: this doesn't seem to work

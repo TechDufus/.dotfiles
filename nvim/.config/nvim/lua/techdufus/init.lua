@@ -16,6 +16,7 @@ require('techdufus.lsp')
 require('techdufus.nvim-go')
 require('techdufus.filetype')
 require('techdufus.commentary')
+require("techdufus.color_scheme")
 
 
 

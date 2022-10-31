@@ -47,11 +47,12 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope.nvim"
   use "nvim-telescope/telescope-media-files.nvim"
   use "ThePrimeagen/harpoon"
-  use "gruvbox-community/gruvbox"
+  -- use "gruvbox-community/gruvbox"
   -- use "github/copilot.vim"
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use { "catppuccin/nvim", as = "catppuccin" }
-  use "neovim/nvim-lspconfig" 
+  use { "navarasu/onedark.nvim" }
+  use "neovim/nvim-lspconfig"
   use "sharkdp/fd"
   use "kyazdani42/nvim-web-devicons"
   use "ryanoasis/vim-devicons"
