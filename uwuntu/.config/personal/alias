@@ -24,6 +24,8 @@ alias d='docker'
 alias k='kubectl'
 alias kx='kubectl exec -it'
 alias ugr='pwsh -c Update-GitRepos'
+alias brb=asciiquarium
+alias aq=asciiquarium
 
 if [ -x "$(command -v zoxide)" ]; then
   eval "$(zoxide init bash)"
