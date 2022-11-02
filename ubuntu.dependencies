@@ -57,20 +57,6 @@ sudo n stable > /dev/null 2>&1
 hash -r > /dev/null 2>&1
 
 
-NPM_DEPENDENCIES=(
-  "dockerfile-language-server-nodejs"
-  "bash-language-server"
-  "typescript-language-server"
-  "yaml-language-server"
-  "vscode-langservers-extracted"
-  "vscode-css-languageserver-bin"
-  "vscode-html-languageserver-bin"
-  "vscode-json-languageserver"
-  "go-langserver"
-  "ansible-language-server"
-  "pyright"
-)
-
 for dependency in "${DEPENDENCIES[@]}"; do
   if ! dpkg -s "$dependency" > /dev/null 2>&1; then
     echo -e "${ARROW}${YELLOW} Installing ${GREEN}$dependency${NC}"
@@ -78,13 +64,6 @@ for dependency in "${DEPENDENCIES[@]}"; do
   fi
 done
 
-# Install NPM dependencies
-for dependency in "${NPM_DEPENDENCIES[@]}"; do
-  if ! npm list -g "$dependency" > /dev/null 2>&1; then
-    echo -e "${ARROW}${YELLOW} Installing ${GREEN}$dependency${NC}"
-    sudo npm install -g "$dependency" > /dev/null 2>&1
-  fi
-done
 
 # Install pip dependencies
 PYTHON_DEPENDENCIES=(
