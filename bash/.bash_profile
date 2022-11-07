@@ -27,14 +27,9 @@ gacp() {
   git push -u origin $(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 }
 
-ggl() {
-  git log --oneline --graph
-}
-
 parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ [\1]/'
 }
-
 
 ## Customizations
 PS1="\[\e[1;92m\][\w]\[\e[33m\]\$(parse_git_branch)\[\e[01;33m\]\[\e[34m\] $>\[\e[96m\] "
