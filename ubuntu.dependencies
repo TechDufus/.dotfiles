@@ -60,7 +60,7 @@ hash -r > /dev/null 2>&1
 for dependency in "${DEPENDENCIES[@]}"; do
   if ! dpkg -s "$dependency" > /dev/null 2>&1; then
     echo -e "${ARROW}${YELLOW} Installing ${GREEN}$dependency${NC}"
-    sudo apt-get install "$dependency" -y > /dev/null 2>&1
+    sudo nala install "$dependency" -y #> /dev/null 2>&1
   fi
 done
 

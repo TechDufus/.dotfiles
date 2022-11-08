@@ -3,7 +3,7 @@ require('mason.settings').set({
     border = 'rounded'
   }
 })
-local cmp = require('cmp') 
+local cmp = require('cmp')
 local lsp = require('lsp-zero')
 lsp.preset('recommended')
 
