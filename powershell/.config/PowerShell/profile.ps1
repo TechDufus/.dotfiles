@@ -48,8 +48,8 @@ if (Get-Module PSReadLine) {
 .DESCRIPTION
 
 .NOTES
-    Author: matthewjdegarmo
-    GitHub: https://github.com/matthewjdegarmo
+    Author: techdufus
+    GitHub: https://github.com/techdufus
 #>
 Function rcode() {
     [CmdletBinding()]
@@ -237,8 +237,8 @@ Set-Alias -Name /.... -Value UpFourDir
     Loop through testing your powershell profile 50 times.
     This is 50 times PER console. With profile and without.
 .NOTES
-    Author: matthewjdegarmo
-    Github: https://github.com/matthewjdegarmo
+    Author: techdufus
+    Github: https://github.com/techdufus
 #>
 Function Test-PowerShellProfilePerformance() {
     [CmdletBinding()]
@@ -563,7 +563,7 @@ If ($DetectedOS -eq 'Windows') {
     This will get the latest data for that module, incriment the revision version value, code-sign the module .psm1 file, and Publish-Module against the PSRepository.
 .NOTES
     Author: Matthew J. DeGarmo
-    Handle: @matthewjdegarmo
+    Handle: @techdufus
 #>
 Function Publish() {
     [CmdletBinding(DefaultParameterSetName = "Revision")]

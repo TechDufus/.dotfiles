@@ -61,7 +61,12 @@ newRole() {
 
 
 go-upgrade() {
-    VERSION=$(curl -s https://go.dev/dl/?mode=json | jq -r '.[0].version')
+    # if no arg is passed, get latest version
+    if [[ -z $1 ]]; then
+        VERSION=$(curl -s https://go.dev/dl/?mode=json | jq -r '.[0].version')
+      else
+        VERSION="go$1"
+    fi
     OS=linux
     ARCH=amd64
     pushd /tmp > /dev/null 2>&1

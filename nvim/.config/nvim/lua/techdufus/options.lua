@@ -33,11 +33,11 @@ local options = {
     signcolumn = "yes",                      -- always show the sign column, otherwise it would shift the text each time
     wrap = false,                            -- display lines as one long line
     sidescrolloff = 8,
-    guifont = "monospace:h17",               -- the font used in graphical neovim applications
+    guifont="Fira Code:h12",               -- the font used in graphical neovim applications
+    -- guifont = "monospace:h17",               -- the font used in graphical neovim applications
     errorbells = false,                      -- no error bells
   }
   vim.opt.shortmess:append "c"
-
   for k, v in pairs(options) do
     vim.opt[k] = v
   end
