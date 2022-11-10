@@ -122,6 +122,10 @@ return packer.startup(function(use)
     end
   }
   use 'ThePrimeagen/vim-be-good'
+  use {
+      'kosayoda/nvim-lightbulb',
+      requires = 'antoinemadec/FixCursorHold.nvim',
+  }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if PACKER_BOOTSTRAP then
