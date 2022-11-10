@@ -33,7 +33,6 @@ keymap("n", "<leader>chl", ":nohl<cr>", opts)
 keymap("n", "<leader>o", "m`o<Esc>``", opts)
 keymap("n", "<leader>O", "m`O<Esc>``", opts)
 
-
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
 keymap("n", "<C-Down>", ":resize +2<CR>", opts)

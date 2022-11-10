@@ -47,6 +47,8 @@ return packer.startup(function(use)
   use "nvim-telescope/telescope.nvim"
   use "nvim-telescope/telescope-media-files.nvim"
   use "ThePrimeagen/harpoon"
+  use "windwp/nvim-autopairs"
+  use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
   -- use "gruvbox-community/gruvbox"
   -- use "github/copilot.vim"
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
@@ -56,7 +58,12 @@ return packer.startup(function(use)
   use "sharkdp/fd"
   use "kyazdani42/nvim-web-devicons"
   use "ryanoasis/vim-devicons"
-  use 'shoukoo/commentary.nvim'
+  use {
+    "numToStr/Comment.nvim",
+    config = function()
+      require("Comment").setup()
+    end,
+    }
   use {
     'lewis6991/gitsigns.nvim',
     config = function()

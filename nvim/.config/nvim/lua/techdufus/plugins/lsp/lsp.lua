@@ -77,13 +77,8 @@ lsp.on_attach(function(client, bufnr)
   bind('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', noremap)
   bind('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', noremap)
   bind("n", "<Leader>f", "<cmd>lua vim.lsp.buf.format({ async = true })<CR>", noremap)
-  -- These ideally would only load when the gopls client is attached...
-  bind("n", "<Leader>gtf", "<cmd>GoTestFile<CR>", noremap)
-  bind("n", "<Leader>gtff", "<cmd>GoTestFunc<CR>", noremap)
-  bind("n", "<Leader>gtt", "<cmd>GoTest<CR>", noremap)
-  bind("n", "<Leader>gta", "<cmd>GoTestAll<CR>", noremap)
   -- if client is gopls then define bindings
-  if client == 'gopls' then
+  if client.name == 'gopls' then
     bind("n", "<Leader>gtf", "<cmd>GoTestFile<CR>", noremap)
     bind("n", "<Leader>gtff", "<cmd>GoTestFunc<CR>", noremap)
     bind("n", "<Leader>gtt", "<cmd>GoTest<CR>", noremap)

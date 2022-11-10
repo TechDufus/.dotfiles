@@ -4,5 +4,15 @@ require("nvim-tree").setup {
   view = {
     side = "left",
     width = 30,
-  }
+  },
+  renderer = {
+    icons = {
+      glyphs = {
+        folder = {
+          arrow_open = "",
+          arrow_closed = "",
+        },
+    },
+},
+},
 }
