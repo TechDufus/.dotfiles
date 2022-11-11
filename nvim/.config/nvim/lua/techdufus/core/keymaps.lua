@@ -78,9 +78,11 @@ keymap("n", "<leader>pf", "<cmd>lua require'telescope.builtin'.find_files({ hidd
 keymap("n", "<leader>ps", "<cmd>lua require('telescope.builtin').live_grep({ hidden = true })<cr>", opts)
 -- keymap("n", "<leader>pg", "<cmd>lua require('telescope.builtin').git_files()<cr>", opts)
 -- Telescope find files in nvim config directory
-keymap("n", "<leader>rc", "<cmd>lua require'telescope.builtin'.find_files({cwd = '~/.dotfiles', find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>", opts)
+keymap("n", "<leader>rc",
+  "<cmd>lua require'telescope.builtin'.find_files({cwd = '~/.dotfiles', find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>"
+  , opts)
 keymap("n", "<leader>1", "<cmd>lua require'telescope.builtin'.buffers()<cr>", opts)
-keymap("n", "<Leader>pg", "<CMD>lua require'techdufus.telescope'.project_files()<CR>", {noremap = true, silent = true})
+keymap("n", "<Leader>pg", "<CMD>lua require'techdufus.telescope'.project_files()<CR>", { noremap = true, silent = true })
 
 
 
@@ -91,8 +93,3 @@ keymap("n", "<leader>h", "<cmd>lua require'harpoon.ui'.nav_file(1)<cr>", opts)
 keymap("n", "<leader>t", "<cmd>lua require'harpoon.ui'.nav_file(2)<cr>", opts)
 keymap("n", "<leader>n", "<cmd>lua require'harpoon.ui'.nav_file(3)<cr>", opts)
 keymap("n", "<leader>s", "<cmd>lua require'harpoon.ui'.nav_file(4)<cr>", opts)
-
-
-
-
-

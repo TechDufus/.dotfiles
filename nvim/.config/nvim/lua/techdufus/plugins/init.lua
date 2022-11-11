@@ -1,4 +1,6 @@
+require('techdufus.plugins.lsp')
 require('techdufus.plugins.terminal')
+require('techdufus.plugins.comment')
 require('techdufus.plugins.telescope')
 require('techdufus.plugins.autopairs')
 require('techdufus.plugins.statusline')

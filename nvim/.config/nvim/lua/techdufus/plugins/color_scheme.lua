@@ -1,4 +1,4 @@
- -- Theme Settings
+-- Theme Settings
 vim.g.catppuccin_flavour = "mocha"
 require('catppuccin').setup({
   transparent_background = true,

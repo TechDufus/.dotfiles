@@ -10,13 +10,13 @@ lsp.preset('recommended')
 lsp.setup_nvim_cmp({
   sources = {
     -- This one provides the data from copilot.
-    {name = 'copilot'},
+    { name = 'copilot' },
 
     --- These are the default sources for lsp-zero
-    {name = 'path'},
-    {name = 'nvim_lsp', keyword_length = 3},
-    {name = 'buffer', keyword_length = 3},
-    {name = 'luasnip', keyword_length = 2},
+    { name = 'path' },
+    { name = 'nvim_lsp', keyword_length = 3 },
+    { name = 'buffer', keyword_length = 3 },
+    { name = 'luasnip', keyword_length = 2 },
   },
   window = {
     completion = cmp.config.window.bordered(),
@@ -59,7 +59,6 @@ local lsp_opts = {
 lsp.on_attach(function(client, bufnr)
   local noremap = { buffer = bufnr, remap = false }
   local bind = vim.keymap.set
-  print(client)
 
   bind('n', '<leader>r', '<cmd>lua vim.lsp.buf.rename()<cr>', noremap)
   -- Mappings.

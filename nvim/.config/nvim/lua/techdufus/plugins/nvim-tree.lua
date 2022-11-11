@@ -3,7 +3,7 @@ require("nvim-tree").setup {
   open_on_setup = true,
   view = {
     side = "left",
-    width = 30,
+    width = 35,
   },
   renderer = {
     icons = {
@@ -12,7 +12,7 @@ require("nvim-tree").setup {
           arrow_open = "",
           arrow_closed = "",
         },
+      },
     },
-},
-},
+  },
 }

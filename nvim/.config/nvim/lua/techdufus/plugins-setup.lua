@@ -58,12 +58,7 @@ return packer.startup(function(use)
   use "sharkdp/fd"
   use "kyazdani42/nvim-web-devicons"
   use "ryanoasis/vim-devicons"
-  use {
-    "numToStr/Comment.nvim",
-    config = function()
-      require("Comment").setup()
-    end,
-    }
+  use "numToStr/Comment.nvim"
   use {
     'lewis6991/gitsigns.nvim',
     config = function()
@@ -123,15 +118,15 @@ return packer.startup(function(use)
 
   use {
     'zbirenbaum/copilot-cmp',
-    after = {'copilot.lua'},
-    config = function ()
+    after = { 'copilot.lua' },
+    config = function()
       require('copilot_cmp').setup()
     end
   }
   use 'ThePrimeagen/vim-be-good'
   use {
-      'kosayoda/nvim-lightbulb',
-      requires = 'antoinemadec/FixCursorHold.nvim',
+    'kosayoda/nvim-lightbulb',
+    requires = 'antoinemadec/FixCursorHold.nvim',
   }
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
