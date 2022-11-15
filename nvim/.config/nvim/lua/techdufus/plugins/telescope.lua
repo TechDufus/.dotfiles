@@ -6,14 +6,46 @@ end
 telescope.load_extension('media_files')
 
 local actions = require "telescope.actions"
+local prompt_prefix = ">"
+local selection_caret = ">"
+local border_chars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" }
+local color_devicons = false
+
+if ConfigMode == "rich" then
+  prompt_prefix = " "
+  selection_caret = " "
+  border_chars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
+  color_devicons = false
+end
 
 telescope.setup {
   defaults = {
 
-    prompt_prefix = " ",
-    selection_caret = " ",
+    prompt_prefix = prompt_prefix,
+    selection_caret = selection_caret,
     path_display = { "smart" },
-
+    entry_prefix = "  ",
+    initial_mode = "insert",
+    selection_strategy = "reset",
+    sorting_strategy = "descending",
+    layout_strategy = "horizontal",
+    layout_config = {
+      width = 0.75,
+      preview_cutoff = 120,
+      horizontal = { mirror = false },
+      vertical = { mirror = false },
+    },
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "--hidden",
+      "--glob=!.git/",
+    },
     mappings = {
       i = {
         ["<C-n>"] = actions.cycle_history_next,
@@ -79,14 +111,21 @@ telescope.setup {
       },
     },
   },
+  file_ignore_patterns = {},
+  path_display = { shorten = 5 },
+  winblend = 0,
+  border = true,
+  borderchars = border_chars,
+  color_devicons = color_devicons,
+  set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
   pickers = {
-    -- Default configuration for builtin pickers goes here:
-    -- picker_name = {
-    --   picker_config_key = value,
-    --   ...
-    -- }
-    -- Now the picker_config_key will be applied every time you call this
-    -- builtin picker
+    find_files = {
+      find_command = { "fd", "--type=file", "--hidden", "--smart-case" },
+    },
+    live_grep = {
+      --@usage don't include the filename in the search results
+      only_sort_text = true,
+    },
   },
   extensions = {
     media_files = {

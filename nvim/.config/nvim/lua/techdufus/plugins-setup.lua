@@ -15,11 +15,11 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd [[packadd packer.nvim]]
 end
 
--- Autocommand that reloads neovim whenever you save the plugins.lua file
+-- Autocommand that reloads neovim whenever you save the plugins-setup.lua file
 vim.cmd [[
   augroup packer_user_config
     autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+    autocmd BufWritePost plugins-setup.lua source <afile> | PackerSync
   augroup end
 ]]
 
@@ -46,12 +46,19 @@ return packer.startup(function(use)
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "nvim-telescope/telescope.nvim"
   use "nvim-telescope/telescope-media-files.nvim"
+  use 'simrat39/symbols-outline.nvim'
   use "ThePrimeagen/harpoon"
   use "windwp/nvim-autopairs"
   use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" })
   -- use "gruvbox-community/gruvbox"
   -- use "github/copilot.vim"
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
+  use {
+    'nvim-treesitter/nvim-treesitter-context',
+    config = function()
+      require('treesitter-context').setup()
+    end
+  }
   use { "catppuccin/nvim", as = "catppuccin" }
   use { "navarasu/onedark.nvim" }
   use "neovim/nvim-lspconfig"
@@ -81,7 +88,6 @@ return packer.startup(function(use)
   }
   use { 'kyazdani42/nvim-tree.lua', requires = { 'kyazdani42/nvim-web-devicons' } }
   use 'akinsho/toggleterm.nvim'
-  -- use 'tweekmonster/gofmt.vim'
   use 'crispgm/nvim-go'
   use 'nathom/filetype.nvim'
   use 'erikzaadi/vim-ansible-yaml'
@@ -115,7 +121,7 @@ return packer.startup(function(use)
       end, 100)
     end,
   }
-
+  use({ "rcarriga/nvim-notify" }) -- pretty notifications
   use {
     'zbirenbaum/copilot-cmp',
     after = { 'copilot.lua' },
