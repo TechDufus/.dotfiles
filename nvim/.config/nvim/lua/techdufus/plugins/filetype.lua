@@ -5,6 +5,7 @@ require("filetype").setup({
       tfstate = "json",
       tfstate_backup = "json",
       tfplan = "json",
+      sh = "bash",
     },
   },
 })

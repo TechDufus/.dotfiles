@@ -11,8 +11,6 @@ alias update='sudo nala update && sudo nala upgrade -y && sudo nala autoremove -
 alias t=terraform
 alias g='git'
 alias gs='git status'
-alias gc='git checkout'
-alias gcb='git checkout -b'
 alias gcane='git commit --amend --no-edit'
 alias ggl='git log --oneline --graph'
 alias ll='ls -halF'
@@ -33,7 +31,18 @@ if [ -x "$(command -v zoxide)" ]; then
   eval "$(zoxide init bash)"
 fi
 
+source /usr/share/bash-completion/completions/git
+# Main git completions (prior to git 2.30, you an use _git instead of __git_main)
+alias g="git"
+__git_complete g __git_main
 
+alias gc="git checkout"
+alias gcb="git checkout -b"
+__git_complete gc _git_checkout
+__git_complete gcb _git_checkout
+
+alias gp="git push"
+__git_complete gp _git_push
 
 
 
