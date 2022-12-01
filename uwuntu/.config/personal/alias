@@ -27,6 +27,7 @@ alias kx='kubectl exec -it'
 alias ugr='pwsh -c Update-GitRepos'
 alias brb=asciiquarium
 alias aq=asciiquarium
+alias gotest='go clean -testcache;go test ./...'
 
 if [ -x "$(command -v zoxide)" ]; then
   eval "$(zoxide init bash)"
@@ -43,6 +44,7 @@ __git_complete gc _git_checkout
 __git_complete gcb _git_checkout
 
 alias gp="git push"
+alias gpf="git push --force-with-lease"
 __git_complete gp _git_push
 
 

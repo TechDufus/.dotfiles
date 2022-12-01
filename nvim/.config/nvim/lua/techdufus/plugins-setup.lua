@@ -53,12 +53,7 @@ return packer.startup(function(use)
   -- use "gruvbox-community/gruvbox"
   -- use "github/copilot.vim"
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-  use {
-    'nvim-treesitter/nvim-treesitter-context',
-    config = function()
-      require('treesitter-context').setup()
-    end
-  }
+  use { 'nvim-treesitter/nvim-treesitter-context' }
   use { "catppuccin/nvim", as = "catppuccin" }
   use { "navarasu/onedark.nvim" }
   use "neovim/nvim-lspconfig"
