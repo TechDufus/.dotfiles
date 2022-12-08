@@ -1,3 +1,5 @@
+# THIS REPO HAS BEEN ARCHIVED IN FAVOR OF [TechDufus/dotfiles](https://github.com/techdufus/dotfiles)
+
 # The Dufus's .config stuffs
 
 ## Ubuntu
